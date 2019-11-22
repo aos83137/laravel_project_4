@@ -13,4 +13,12 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
+
+
+Route::get('/list/question','QuestionsController@index')->name('list.question');
+
+Route::get('/view/question/{id}','ViewQuestionController@show')->name('view.question');
+
+Route::get('/view/register','RegisterController@index');
