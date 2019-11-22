@@ -22,7 +22,7 @@
             <a href="{{ route('view.register') }}">등록하기</a>
         </form>
     </div>
-
+    <hr>
     @if ($questions->count())
         <div class="text-center">
             {!! $questions->render() !!}

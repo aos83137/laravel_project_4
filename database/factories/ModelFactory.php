@@ -33,6 +33,7 @@ $factory->define(App\Comment::class, function (Faker $faker) {
     return [
         //
         'comment'=>$faker->paragraph(),
+        'name'=>$faker->name,
         'created_at'=>$date,
         'updated_at' =>$date
     ];

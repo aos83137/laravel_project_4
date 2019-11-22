@@ -6,9 +6,24 @@ use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
-    //
-    public function index(){
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+        return view('view/register');
+    }
 
-        return view('view.register');
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 }

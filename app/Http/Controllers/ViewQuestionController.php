@@ -9,7 +9,7 @@ class ViewQuestionController extends Controller
     //
     public function show($id){
         $question = \App\Question::find($id);
-
-        return view('view.question',compact('question'));
+        $comments =  $question->comments()->get();
+        return view('view.question',compact('question','comments'));
     }
 }
