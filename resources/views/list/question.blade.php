@@ -19,7 +19,7 @@
     
     <div>
         <form action="">
-            <a href="{{ route('list.question') }}">등록하기</a>
+            <a href="{{ route('view.register') }}">등록하기</a>
         </form>
     </div>
 
