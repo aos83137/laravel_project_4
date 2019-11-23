@@ -2,13 +2,20 @@
 
 @section('content')
     <div class="container">
+        {{-- 질문 div --}}
+        <div>
             <h1>Q&A</h1>
             <hr>
             <h1>
                 질문 : {{ $question->title }}
             </h1>
             <p>{{ $question->content }}</p>
-        <hr>
+            <hr>
+        </div>
+        
+
+
+        {{-- 댓글 div --}}
         <div>
             <h3>Comment</h3>
             @forelse ($comments as $comment)
@@ -40,11 +47,17 @@
                 
             @endforelse
         </div>
-        <hr>
+
+
+        {{-- 댓글달기 div --}}
         <div>
+            <hr>
             @include('view.comment',['id' => $question->id])
+            <hr>
         </div>
-        <hr>
+
+
+        {{-- 질문 CRUD버튼 --}}
         <div>
             @if(isset(Auth::user()->name))
                 @if (Auth::user()->name == 'admin')
