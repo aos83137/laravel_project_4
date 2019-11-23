@@ -13,7 +13,6 @@ class CommentsController extends Controller
 
         $comment = $request->input('comment');
 
-        //이거 현재 로그인한 사람으로 바꿔야함 
         $name = Auth::user()->name;
 
         $model = new \App\Comment;
@@ -21,7 +20,11 @@ class CommentsController extends Controller
         $model->question_id=$id;
         $model->name = $name;
         $model->save();
-        // return print($model);
+
+        if(! $model){
+            return back()->with('flash_messagge', '댓글이 저장되지 않았습니다.')->withInput();
+        }
+
         return  \App::make('redirect')->back()->with('flash_success', '댓글이 작성되었습!');
 
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionsController extends Controller
 {
@@ -28,7 +29,10 @@ class QuestionsController extends Controller
     }
 
     public function store(\App\Http\Requests\QuestionsRequest $request){
-        $question = \App\User::find(1)->questions()->create($request->all());
+
+        $id = Auth::user()->id;
+
+        $question = \App\User::find($id)->questions()->create($request->all());
 
         if(! $question){
             return back()->with('flash_messagge', '질문이 저장되지 않았습니다.')->withInput();
