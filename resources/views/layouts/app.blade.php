@@ -21,6 +21,12 @@
 </head>
 <body>
     <div id="app">
+        @if (session()->has('flash_message'))
+            <div role="alert">
+                {{ session('flash_message') }}
+            </div>
+        @endif
+        
         @yield('content')
     </div>
 </body>
