@@ -19,13 +19,22 @@
                         comment :
                         {{ $comment->comment }}
                         <br>
-                        @if (Auth::user()->name == $comment->name)
-                            <form action="{{  route('comments.destroy', $comment->id ) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <input type="submit" class="btn btn-danger" value="삭제"/>
-                            </form>
+                        @if (isset(Auth::user()->name))
+                            @if (Auth::user()->name == 'admin')
+                                <form action="{{  route('comments.destroy', $comment->id ) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <input type="submit" class="btn btn-danger" value="삭제"/>
+                                </form>
+                            @elseif(Auth::user()->name == $comment->name)
+                                <form action="{{  route('comments.destroy', $comment->id ) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <input type="submit" class="btn btn-danger" value="삭제"/>
+                                </form>
+                            @endif
                         @endif
+
                 <hr>
             @empty
                 
@@ -37,17 +46,30 @@
         </div>
         <hr>
         <div>
-            {{-- 밑의 기능들은 질문등록에 관한 것 
-                수정 삭제는 본인인 경우만 나오게 만들어야함--}}
-            <a class="btn btn-primary" href="{{ route('questions.edit', $question->id ) }}">수정</a>
+            @if(isset(Auth::user()->name))
+                @if (Auth::user()->name == 'admin')
+                    <a class="btn btn-primary" href="{{ route('questions.edit', $question->id ) }}">수정</a>
 
-            <form action="{{  route('questions.destroy', $question->id ) }}" method="POST">
-                @method('DELETE')
-                @csrf
-                <input type="submit" class="btn btn-danger" value="삭제"/>
-            </form>
+                    <form action="{{  route('questions.destroy', $question->id ) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <input type="submit" class="btn btn-danger" value="삭제"/>
+                    </form>
 
-            <a class="btn btn-primary" href="{{ route('questions.index') }}">목록</a>
+                    <a class="btn btn-primary" href="{{ route('questions.index') }}">목록</a>
+                @elseif(Auth::user()->name == $question->name)
+                    <a class="btn btn-primary" href="{{ route('questions.edit', $question->id ) }}">수정</a>
 
+                    <form action="{{  route('questions.destroy', $question->id ) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <input type="submit" class="btn btn-danger" value="삭제"/>
+                    </form>
+
+                    <a class="btn btn-primary" href="{{ route('questions.index') }}">목록</a>
+                @else
+                @endif
+            @endif
+            <a class="btn btn-primary" href="{{ route('questions.index') }}">목록</a>        
     </div>
 @endsection

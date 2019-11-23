@@ -18,7 +18,13 @@
     </div>
     
     <div>
-        <a href="{{ route('questions.create') }}">등록하기</a>
+        @auth
+            <a href="{{ route('questions.create') }}">등록하기</a>
+
+        @endauth
+        @guest
+            <p>질문 등록을 위해 로그인을 해 주세요.</p>
+        @endguest
     </div>
     <hr>
     @if ($questions->count())
