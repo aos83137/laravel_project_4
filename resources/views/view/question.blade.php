@@ -9,6 +9,7 @@
             <h1>
                 질문 : {{ $question->title }}
             </h1>
+            <small>질문자 : {{ $question->user->name }}</small>
             <p>{{ $question->content }}</p>
             <hr>
         </div>
@@ -59,18 +60,21 @@
 
         {{-- 질문 CRUD버튼 --}}
         <div>
-            @if(isset(Auth::user()->name))
+            @guest
+                <a class="btn btn-primary" href="{{ route('questions.index') }}">목록</a>        
+            @endguest
+            @auth
                 @if (Auth::user()->name == 'admin')
                     <a class="btn btn-primary" href="{{ route('questions.edit', $question->id ) }}">수정</a>
 
                     <form action="{{  route('questions.destroy', $question->id ) }}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <input type="submit" class="btn btn-danger" value="삭제"/>
+                    @method('DELETE')
+                    @csrf
+                    <input type="submit" class="btn btn-danger" value="삭제"/>
                     </form>
 
                     <a class="btn btn-primary" href="{{ route('questions.index') }}">목록</a>
-                @elseif(Auth::user()->name == $question->name)
+                @elseif(Auth::user()->id == $question->user_id)
                     <a class="btn btn-primary" href="{{ route('questions.edit', $question->id ) }}">수정</a>
 
                     <form action="{{  route('questions.destroy', $question->id ) }}" method="POST">
@@ -81,8 +85,8 @@
 
                     <a class="btn btn-primary" href="{{ route('questions.index') }}">목록</a>
                 @else
-                @endif
-            @endif
-            <a class="btn btn-primary" href="{{ route('questions.index') }}">목록</a>        
+                @endif                
+            @endauth
+        </div>
     </div>
 @endsection
