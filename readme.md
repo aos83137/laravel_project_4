@@ -20,6 +20,18 @@ laravel Team project 4
         자신이 등록한 질문 및 댓글은 수정 및 삭제 가능
     3. guest
         질문 및 댓글 읽기만 가능
+
+## 덤프파일
+    1. mysqldump 생성
+		a. 1.maria 의 bin폴더에서 cmd창에서 진행하기
+		b. .\mysqldump.exe -uroot -p team2 > test3.sql
+		c. 3. bin안에 test(이름).sql 생성 확인
+	2. mysqldump를 이용한 복구
+		a. PowerShell 인경우
+			i.  Get-Content 덤프.sql | .\mysql.exe -u아이디 -p team2(db명)
+		b. cmd 경우
+            i.  mysql -u아이디 -p team2(db명) < 덤프.sql
+
 ## 규칙
 
  - 관리자 기능 사용시 name을 admin으로 만들어야 함
