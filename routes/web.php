@@ -21,6 +21,10 @@ Route::resource('/questions','QuestionsController');
 
 Route::post('/comments/{id}','CommentsController@store')->name('comments.store');
 
+Route::delete('/comments/{id}','CommentsController@destroy')->name('comments.destroy');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+

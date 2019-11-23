@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
@@ -13,9 +14,7 @@ class CommentsController extends Controller
         $comment = $request->input('comment');
 
         //이거 현재 로그인한 사람으로 바꿔야함 
-        $user_id = 1; 
-        
-        $name = \App\User::find($user_id)->name;
+        $name = Auth::user()->name;
 
         $model = new \App\Comment;
         $model->comment = $comment;
@@ -23,7 +22,14 @@ class CommentsController extends Controller
         $model->name = $name;
         $model->save();
         // return print($model);
-        return  \App::make('redirect')->back()->with('flash_success', 'Thank you,!');
+        return  \App::make('redirect')->back()->with('flash_success', '댓글이 작성되었습!');
 
+    }
+    public function destroy($id)
+    {
+        //
+        \App\Comment::destroy($id);
+
+        return \App::make('redirect')->back()->with('flash_messsage','댓글이 삭제되었습니다.');
     }
 }

@@ -34,17 +34,12 @@
                         <label for="title">제목</label>
                         <input type="text" name="title" id=title" value="{{ $question->title }}" class="form-control">
                         {!! $errors->first('title', '<span class="form-error">:message</span>') !!}
-    
-                    </div>
-    
-                    <div class="form-group" >
+
                         <label for="content">본문</label>
                         <textarea name="content" id="content" rows="10" class="form-control">{{ $question->content }}
                         </textarea>
                         {!! $errors->first('content', '<span class="form-error">:message</span>') !!}
-                    </div>
-    
-                    <div class="form-group">
+
                         <a href="{{ route('questions.show',$question->id) }}">취소</a>
                         @method('PATCH')
                         <input type="submit" class="btn btn-danger" value="수정"/>
