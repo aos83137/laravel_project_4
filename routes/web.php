@@ -17,8 +17,6 @@ Route::get('/', function () {
 
 
 
-Route::get('/list/question','QuestionsController@index')->name('list.question');
+Route::resource('/questions','QuestionsController');
 
-Route::get('/view/question/{id}','ViewQuestionController@show')->name('view.question');
 
-Route::get('/view/register','RegisterController@index')->name('view.register');

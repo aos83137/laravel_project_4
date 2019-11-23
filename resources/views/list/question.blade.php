@@ -7,7 +7,7 @@
         <ul>
             @forelse ($questions as $question)
                 <li>
-                    <a href="{{ route('view.question', ['id' => $question->id]) }}">
+                    <a href="{{ route('questions.show', [$question->id]) }}">
                         {{ $question->title }} <small>by {{ $question->user->name }}</small>
                     </a>
                 </li>
@@ -19,7 +19,7 @@
     
     <div>
         <form action="">
-            <a href="{{ route('view.register') }}">등록하기</a>
+            <a href="{{ route('questions.create') }}">등록하기</a>
         </form>
     </div>
     <hr>

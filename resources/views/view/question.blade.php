@@ -34,9 +34,10 @@
     </div>
     <hr>
     <div>
-        {{-- 밑의 기능들은 질문등록에 관한 것 --}}
+        {{-- 밑의 기능들은 질문등록에 관한 것 
+            수정 삭제는 본인인 경우만 나오게 만들어야함--}}
         <a href="">수정</a>
         <a href="">삭제</a>
-        <a href="">등록</a>
+        <a href="{{ route('questions.index') }}">목록</a>
     </div>
 @endsection
