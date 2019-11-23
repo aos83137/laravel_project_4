@@ -23,7 +23,7 @@ laravel Team project 4
 
 ## 덤프파일
     1. mysqldump 생성
-		a. 1.maria 의 bin폴더에서 cmd창에서 진행하기
+		a. mysql bin폴더에서 cmd창에서 진행하기
 		b. .\mysqldump.exe -uroot -p team2 > test3.sql
 		c. 3. bin안에 test(이름).sql 생성 확인
 	2. mysqldump를 이용한 복구
