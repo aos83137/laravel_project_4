@@ -7,7 +7,7 @@
         <ul>
             @forelse ($questions as $question)
                 <li>
-                    <a href="{{ route('questions.show', [$question->id]) }}">
+                    <a href="{{ route('questions.show', $question->id) }}">
                         {{ $question->title }} <small>by {{ $question->user->name }}</small>
                     </a>
                 </li>

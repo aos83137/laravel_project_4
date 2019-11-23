@@ -36,8 +36,16 @@
     <div>
         {{-- 밑의 기능들은 질문등록에 관한 것 
             수정 삭제는 본인인 경우만 나오게 만들어야함--}}
-        <a href="">수정</a>
-        <a href="">삭제</a>
+        <a href="{{ route('questions.edit', $question->id ) }}">수정</a>
+
+        <form action="{{  route('questions.destroy', $question->id ) }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <input type="submit" class="btn btn-danger" value="삭제"/>
+        </form>
+
         <a href="{{ route('questions.index') }}">목록</a>
+
+
     </div>
 @endsection

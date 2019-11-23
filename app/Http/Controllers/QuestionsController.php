@@ -21,7 +21,10 @@ class QuestionsController extends Controller
     }
 
     public function create(){
-        return view('view.register');
+        return view('view.register',[
+            'question' => FALSE,
+            //view.register에 저장하기 버튼 if로 분기 나누기위한 변수
+        ]);
     }
 
     public function store(\App\Http\Requests\QuestionsRequest $request){
@@ -37,7 +40,9 @@ class QuestionsController extends Controller
     public function edit($id)
     {
         //
-        return __METHOD__.'은 다음의 기본키를 가진 Article 모델을 수정하기 위한 폼을 담은 뷰를 반환합니다.'.'$id';
+        $question = \App\Question::find($id);
+
+        return view('view.register', compact('question'));
     }
 
     /**
@@ -47,10 +52,12 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(\App\Http\Requests\QuestionsRequest $request, $id)
     {
         //
-        return __METHOD__.'은 다음의 기본키를 가진 Article 모델을 수정합니다.'.$id;
+        $question = \App\Question::find($id)->update($request->all());
+
+        return redirect(route('questions.index'))->with('flash_messsage','작성하신 질문이 수정되었습니다.');
     }
 
     /**
@@ -62,7 +69,9 @@ class QuestionsController extends Controller
     public function destroy($id)
     {
         //
-        return __METHOD__.'은 다음의 기본키를 가진 Article 모델을 파괴합니다.'.'$id';
+        \App\Question::destroy($id);
+
+        return redirect(route('questions.index'))->with('flash_messsage','질문이 삭제되었습니다.');
     }
 
 }
