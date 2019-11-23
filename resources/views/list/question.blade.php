@@ -18,9 +18,7 @@
     </div>
     
     <div>
-        <form action="">
-            <a href="{{ route('questions.create') }}">등록하기</a>
-        </form>
+        <a href="{{ route('questions.create') }}">등록하기</a>
     </div>
     <hr>
     @if ($questions->count())

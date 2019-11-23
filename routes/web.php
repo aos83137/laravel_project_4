@@ -19,4 +19,8 @@ Route::get('/', function () {
 
 Route::resource('/questions','QuestionsController');
 
+Route::post('/comments/{id}','CommentsController@store')->name('comments.store');
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

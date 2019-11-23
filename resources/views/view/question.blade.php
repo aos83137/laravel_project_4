@@ -19,18 +19,15 @@
                 comment :
                 {{ $comment->comment }}
                 <br>
+                
             <hr>
         @empty
             
         @endforelse
-
     </div>
     <hr>
     <div>
-        <fieldset>
-            <input type="content" name="comment">
-            <a href="">등록</a>
-        </fieldset>
+        @include('view.comment',['id' => $question->id])
     </div>
     <hr>
     <div>
@@ -45,7 +42,6 @@
         </form>
 
         <a href="{{ route('questions.index') }}">목록</a>
-
 
     </div>
 @endsection
