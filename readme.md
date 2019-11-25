@@ -3,10 +3,17 @@ laravel Team project 4
 
 ## 실행방법
 
-1. .env파일에 db설정
-2. 마이그레이션
+1. Composer 종속성 설치
+    - composer install
+
+2. NPM 종속성 설치
+    - npm install
+3. env 파일의 복사본을 만듭니다
+    - cp .env.example .env
+
+4. .env 파일에서 Laravel이 데이터베이스에 연결할 수 있도록 데이터베이스 정보를 추가
     - php artisan migrate
-3. (선택) seed로 qna 더미파일 생성 -> 추후 db더미파일을 활용하는 방도 고려
+5. (선택) seed로 qna 더미파일 생성 -> 추후 db더미파일을 활용하는 방도 고려
     - php .\artisan db:seed --class=UsersTableSeeder  
     - php .\artisan db:seed --class=QuestionsTableSeeder
     - php .\artisan db:seed --class=CommentsTableSeeder 
