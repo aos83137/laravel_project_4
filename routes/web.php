@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::resource('/questions','QuestionsController');
 
+Route::resource('members', 'MembersController');
+
 Route::post('/comments/{id}','CommentsController@store')->name('comments.store');
 
 Route::delete('/comments/{id}','CommentsController@destroy')->name('comments.destroy');
