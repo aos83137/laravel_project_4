@@ -12,12 +12,30 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+                background: repeating-linear-gradient(45deg, white 50%,skyblue 30%, blue);
+                color: #8A0829;
                 font-family: 'Nunito', sans-serif;
-                font-weight: 200;
+                font-weight: 500;
                 height: 100vh;
                 margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+            @keyframes slidein {
+                from {
+                    margin-left: 100%;
+                    width: 300%;
+                }
+                to {
+                    margin-left: 0%;
+                    width: 100%;
+                }
+                /* 75% {
+                    font-size: 300%;
+                    margin-left: 25%;
+                    width: 150%;
+                } */
+                
             }
 
             .full-height {
@@ -46,6 +64,8 @@
 
             .title {
                 font-size: 84px;
+                animation-duration: 3s;
+                animation-name: slidein;
             }
 
             .links > a {
@@ -60,6 +80,18 @@
 
             .m-b-md {
                 margin-bottom: 30px;
+            }
+            img{
+                border: 1px solid #FF00FF;
+                width: 150px;
+                height: 150px;
+            }
+            body{
+                background-image:url(fall.png);
+                background-color:#D9E5FF;
+                background-repeat:no-repeat;
+                background-size:contain;
+                background-position:center center;
             }
         </style>
     </head>
@@ -82,6 +114,7 @@
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
+                    <img src="1.png">
                 </div>
 
                 <div class="links">
