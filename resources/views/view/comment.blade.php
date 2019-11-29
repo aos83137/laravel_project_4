@@ -12,7 +12,7 @@
                         },
 
                         }).then(function(data){
-                            var $div = $('<div class="commentsContents">id : {{ $comment->name }}<br>commnet : '+comment+'<button name="delete" class="btn btn-danger button__delete" data-id="{{ $comment->id }}" data-cnt="" >삭제</button>   <hr></div>');
+                            var $div = $('<div class="commentsContents">id : {{ $comment->name }}<br>commnet : '+comment+'<br><button name="delete" class="btn btn-danger button__delete" data-id="{{ $comment->id }}" data-cnt="" >삭제</button>   <hr></div>');
                             $('#comments').append($div);
                         });
                     }else{
