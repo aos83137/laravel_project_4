@@ -12,30 +12,12 @@
         <!-- Styles -->
         <style>
             html, body {
-                background: repeating-linear-gradient(45deg, white 50%,skyblue 30%, blue);
-                color: #8A0829;
+                background-color: #fff;
+                color: #636b6f;
                 font-family: 'Nunito', sans-serif;
-                font-weight: 500;
+                font-weight: 200;
                 height: 100vh;
                 margin: 0;
-                padding: 0;
-                height: 100%;
-            }
-            @keyframes slidein {
-                from {
-                    margin-left: 100%;
-                    width: 300%;
-                }
-                to {
-                    margin-left: 0%;
-                    width: 100%;
-                }
-                /* 75% {
-                    font-size: 300%;
-                    margin-left: 25%;
-                    width: 150%;
-                } */
-                
             }
 
             .full-height {
@@ -64,8 +46,6 @@
 
             .title {
                 font-size: 84px;
-                animation-duration: 3s;
-                animation-name: slidein;
             }
 
             .links > a {
@@ -81,41 +61,24 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
-            img{
-                border: 1px solid #FF00FF;
-                width: 150px;
-                height: 150px;
-            }
-            body{
-                background-image:url(fall.png);
-                background-color:#D9E5FF;
-                background-repeat:no-repeat;
-                background-size:contain;
-                background-position:center center;
-            }
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ route('logout') }}">Logout</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
+                        <a href="{{ url('/custom-login') }}">Login</a>
+                        <a href="{{ url('/custom-register') }}">Register</a>
                     @endauth
                 </div>
-            @endif
 
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
-                    <img src="1.png">
                 </div>
+
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>

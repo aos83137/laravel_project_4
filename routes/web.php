@@ -13,20 +13,29 @@
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+});
+
 
 
 
 Route::resource('/questions','QuestionsController');
 
+Route::resource('members', 'MembersController');
+
 Route::post('/comments/{id}','CommentsController@store')->name('comments.store');
 
 Route::delete('/comments/{id}','CommentsController@destroy')->name('comments.destroy');
 
-Auth::routes();
+Route::get('custom-register','CustomAuthController@showRegisterForm')->name('custom.register');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('custom-register','CustomAuthController@register');
+
+Route::get('custom-login','CustomAuthController@showLoginForm')->name('custom.login');
+
+Route::post('custom-login','CustomAuthController@login');
 
 // Route::post('/questions', 'QuestionsController@ajaxUserInfo')->name('ajaxRequest.post');
 
+Route::get('logout', 'CustomAuthController@logout');
 
+Route::post('logout', 'CustomAuthController@logout')->name('logout');
