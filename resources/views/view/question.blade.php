@@ -53,7 +53,7 @@
                 });
 
                 $('.button__delete').on('click', function(e){
-
+                    alert('test');
                     var commentId = $(this).data('id');
                     var questionId = {{ $question->id }};
                     var index = $(this).data('cnt');

@@ -25,7 +25,8 @@ class CommentsController extends Controller
                 return back()->with('flash_messagge', '댓글이 저장되지 않았습니다.')->withInput();
             }
             return response()->json([
-                'success' => 'Record deleted successfully!'
+                'success' => 'Record deleted successfully!',
+                'comment' => $comment,
             ]);
         }else{
             

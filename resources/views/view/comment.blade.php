@@ -12,30 +12,17 @@
                         },
 
                         }).then(function(data){
-                            var $div = $('<div class="commentsContents">id : {{ $comment->name }}<br>commnet : '+comment+'<br><button name="delete" class="btn btn-danger button__delete" data-id="{{ $comment->id }}" data-cnt="" >삭제</button>   <hr></div>');
+                            // alert(data.success);
+                            var $div = $('<div class="commentsContents'+10+'"><hr>id : {{ $user->name }}<br>commnet : '+data.comment+' <br> <button name="delete" class="btn btn-danger button__delete" data-id="10" data-cnt="" >삭제</button>   <hr></div>');
                             $('#comments').append($div);
+                            
                         });
                     }else{
                         // error messag
                     }   
             });
         });
-        $('.button__delete').on('click', function(e){
 
-            var commentId = $(this).data('id');
-            var questionId = {{ $question->id }};
-            var index = $(this).data('cnt');
-            $.ajax({        
-                type:'DELETE',
-                url:'/comments/'+commentId ,
-                dataType:"html",
-                success:function(data){
-                }
-            }).then(function(data){
-                $('.commentsContents'+index).remove();
-            });
-            
-        })
 </script>
 {{-- <form action="{{ route('comments.store',$id) }}" method="POST"> --}}
 @csrf
