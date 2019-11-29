@@ -39,3 +39,4 @@ Route::post('custom-login','CustomAuthController@login');
 Route::get('logout', 'CustomAuthController@logout');
 
 Route::post('logout', 'CustomAuthController@logout')->name('logout');
+

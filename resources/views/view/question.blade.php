@@ -19,10 +19,12 @@
 
 
         {{-- 댓글 div --}}
-        <div>
+        <div id="comments">
             <h3>Comment</h3>
-            @forelse ($comments as $comment)
-                <hr>
+                
+                @forelse ($comments as $comment)    
+                   <div class="commentsContents{{ $loop->index }}">
+                    <hr>
                         id :
                         {{ $comment->name }}
                         <br>
@@ -31,31 +33,49 @@
                         <br>
                         @if (isset(Auth::user()->name))
                             @if (Auth::user()->name == 'admin')
-                                <form action="{{  route('comments.destroy', $comment->id ) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <input type="submit" class="btn btn-danger" value="삭제"/>
-                                </form>
+                                @csrf
+                                    <button name="delete" class="btn btn-danger button__delete" data-id="{{ $comment->id }}" data-cnt="{{ $loop->index }}" >삭제</button>
                             @elseif(Auth::user()->name == $comment->name)
-                                <form action="{{  route('comments.destroy', $comment->id ) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <input type="submit" class="btn btn-danger" value="삭제"/>
-                                </form>
+                                @csrf
+                                    <button name="delete" class="btn btn-danger button__delete" data-id="{{ $comment->id }}" data-cnt="{{ $loop->index }}" >삭제</button>
                             @endif
                         @endif
+                    <hr>
+                   </div>
+                @empty
+                    
+                @endforelse
+            <script>
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
-                <hr>
-            @empty
-                
-            @endforelse
+                $('.button__delete').on('click', function(e){
+
+                    var commentId = $(this).data('id');
+                    var questionId = {{ $question->id }};
+                    var index = $(this).data('cnt');
+                    $.ajax({        
+                        type:'DELETE',
+                        url:'/comments/'+commentId ,
+                        dataType:"html",
+                        success:function(data){
+                        }
+                    }).then(function(data){
+                        $('.commentsContents'+index).remove();
+                    });
+                    
+                })
+            </script>
         </div>
 
 
         {{-- 댓글달기 div --}}
         <div>
             <hr>
-            @include('view.comment',['id' => $question->id])
+                @include('view.comment',['id' => $question->id])
             <hr>
         </div>
 
