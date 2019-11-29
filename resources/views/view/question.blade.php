@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+
     <div class="container">
         {{-- 질문 div --}}
         <div>
@@ -85,6 +87,7 @@
 
                     <a class="btn btn-primary" href="{{ route('questions.index') }}">목록</a>
                 @else
+                    <a class="btn btn-primary" href="{{ route('questions.index') }}">목록</a>
                 @endif                
             @endauth
         </div>

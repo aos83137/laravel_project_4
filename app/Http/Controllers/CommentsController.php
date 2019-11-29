@@ -10,7 +10,7 @@ class CommentsController extends Controller
     public function store(Request $request, $id)
     {
         //
-
+        
         $comment = $request->input('comment');
 
         $name = Auth::user()->name;
