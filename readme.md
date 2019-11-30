@@ -8,15 +8,40 @@ laravel Team project 4
 
 2. NPM 종속성 설치
     - npm install
-3. env 파일의 복사본을 만듭니다
+3. key 생성
+    - php artisan key:generate     
+4. env 파일의 복사본을 만듭니다
     - cp .env.example .env
 
-4. .env 파일에서 Laravel이 데이터베이스에 연결할 수 있도록 데이터베이스 정보를 추가
+5. .env 파일에서 Laravel이 데이터베이스에 연결할 수 있도록 데이터베이스 정보를 추가
     - php artisan migrate
-5. (선택) seed로 qna 더미파일 생성 -> 추후 db더미파일을 활용하는 방도 고려
+6. (선택) seed로 qna 더미파일 생성 -> 추후 db더미파일을 활용하는 방도 고려
     - php .\artisan db:seed --class=UsersTableSeeder  
     - php .\artisan db:seed --class=QuestionsTableSeeder
     - php .\artisan db:seed --class=CommentsTableSeeder 
+
+
+## Yajra 설치방법 및 경로설정
+    1.Yajra 설치 명령어
+        composer require yajra/laravel-datatables-oracle
+    
+    2-1.경로설정
+        config/app.php에서 'providers' => [
+        ............
+        Yajra\Datatables\DatatablesServiceProvider::class,
+
+    ],
+    
+    2-2.경로설정
+        'aliases' => [
+        ................
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+
+    ],
+    2-3.경로설정
+        php artisan vendor:publish --provider=Yajra\DataTables\DataTablesServiceProvide
+
+    
 
 
 ## Q&A 기능 설명

@@ -21,6 +21,7 @@
                 padding: 0;
                 height: 100%;
             }
+
             @keyframes slidein {
                 from {
                     margin-left: 100%;
@@ -35,9 +36,8 @@
                     margin-left: 25%;
                     width: 150%;
                 } */
-                
-            }
 
+            }
             .full-height {
                 height: 100vh;
             }
@@ -97,25 +97,21 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ route('logout') }}">Logout</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
+                        <a href="{{ url('/custom-login') }}">Login</a>
+                        <a href="{{ url('/custom-register') }}">Register</a>
                     @endauth
                 </div>
-            @endif
 
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
-                    <img src="1.png">
+                    <img src="./img/logo.png">
                 </div>
+
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
@@ -127,6 +123,7 @@
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                     <a href="{{ route('questions.index') }}">question</a>
+                    <a href="/japan">Semester</a>
                 </div>
             </div>
         </div>

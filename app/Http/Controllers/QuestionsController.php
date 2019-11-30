@@ -18,7 +18,8 @@ class QuestionsController extends Controller
     public function show($id){
         $question = \App\Question::find($id);
         $comments =  $question->comments()->get();
-        return view('view.question',compact('question','comments'));
+        $user = Auth::user();
+        return view('view.question',compact('question','comments','user'));
     }
 
     public function create(){
@@ -61,7 +62,8 @@ class QuestionsController extends Controller
         //
         $question = \App\Question::find($id)->update($request->all());
 
-        return redirect(route('questions.index'))->with('flash_messsage','작성하신 질문이 수정되었습니다.');
+        return redirect()->route('questions.show', [$id]);
+        // return redirect(route('questions.index'))->with('flash_messsage','작성하신 질문이 수정되었습니다.');
     }
 
     /**
@@ -78,4 +80,8 @@ class QuestionsController extends Controller
         return redirect(route('questions.index'))->with('flash_messsage','질문이 삭제되었습니다.');
     }
 
+    public function ajaxUserInfo(Request $request){
+
+        return response()->json(['success'=>'Got Simple Ajax Request.']);
+    }
 }
