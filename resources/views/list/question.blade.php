@@ -2,22 +2,22 @@
 
 @section('content')
     <div class="container">
-        <h1>Q&A list</h1>
+        <h1>Q&A List</h1>
         <hr>
         <ul>
             @forelse ($questions as $question)
-                <li>
+                <div class="text-left">
                     <a href="{{ route('questions.show', $question->id) }}">
                         {{ $question->title }} <small>by {{ $question->user->name }}</small>
                     </a>
-                </li>
+                </div>
             @empty
                 <p>질문을 등록해 주세요.</p>
             @endforelse
         </ul>
     </div>
     
-    <div>
+    <div class="text-center" >
         @auth
             <a href="{{ route('questions.create') }}">등록하기</a>
 
