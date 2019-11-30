@@ -21,6 +21,29 @@ laravel Team project 4
     - php .\artisan db:seed --class=CommentsTableSeeder 
 
 
+## Yajra 설치방법 및 경로설정
+    1.Yajra 설치 명령어
+        composer require yajra/laravel-datatables-oracle
+    
+    2-1.경로설정
+        config/app.php에서 'providers' => [
+        ............
+        Yajra\Datatables\DatatablesServiceProvider::class,
+
+    ],
+    
+    2-2.경로설정
+        'aliases' => [
+        ................
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+
+    ],
+    2-3.경로설정
+        php artisan vendor:publish --provider=Yajra\DataTables\DataTablesServiceProvide
+
+    
+
+
 ## Q&A 기능 설명
     1. 관리자(admin)
         모든 질문과 댓글 수정 및 삭제 가능
