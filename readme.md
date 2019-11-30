@@ -22,22 +22,25 @@ laravel Team project 4
 
 
 ## Yajra 설치방법 및 경로설정
-1. Yajra설치
-    - composer require yajra/laravel-datatables-oracle
-
-2. 경로추가
-    -1. config/app.php 파일열기
-    -2. 'providers' => [
+    1.Yajra 설치 명령어
+        composer require yajra/laravel-datatables-oracle
+    
+    2-1.경로설정
+        config/app.php에서 'providers' => [
         ............
         Yajra\Datatables\DatatablesServiceProvider::class,
 
     ],
-    -3. 'aliasea' => [
-        ........
-        ''DataTables' => Yajra\DataTables\Facades\DataTables::class,
-        ],
-    -4. 수정 완료후 경로설정 명령어 입력.
-    php artisan vendor:publish --provider=Yajra\DataTables\DataTablesServiceProvider
+    
+    2-2.경로설정
+        'aliases' => [
+        ................
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+
+    ],
+    2-3.경로설정
+        php artisan vendor:publish --provider=Yajra\DataTables\DataTablesServiceProvide
+
     
 
 
