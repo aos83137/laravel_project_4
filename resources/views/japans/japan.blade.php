@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Datatables Server Side Processing in Laravel</title>
+    <title>Semester In Japan</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
@@ -13,17 +13,19 @@
 
 <div class="container">
     <br />
-    <h3 align="center">Datatables Server Side Processing in Laravel</h3>
+    <h1 align="center">Semester In Japan</h1>
     <br />
     <div align="right">
         <button type="button" name="add" id="add_data" class="btn btn-success btn-sm">Add</button>
     </div>
-    <table id="japan_table" class="table table-bordered" style="width:100%">
+    <table id="japan_table" class="table table-bordered" style="width:50">
         <thead>
             <tr>
-                <th>Week</th>
-                <th>Destination</th>
+                <th style="width:15%">Week</th>
+                <th style="width:15%">Destination</th>
                 <th>Title</th>
+                <th style="width:15%">Show</th>
+                <th>Action</th>
             </tr>
         </thead>
     </table>
@@ -62,6 +64,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" name="japan_id" id="japan_id" value="" />
                     <input type="hidden" name="button_action" id="button_action" value="insert" />
                     <input type="submit" name="submit" id="action" value="Add" class="btn btn-info" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -83,6 +86,8 @@ $(document).ready(function() {
             { "data": "week" },
             { "data": "destination" },
             { "data": "title"},
+            { "data": "show"},
+            { "data": "action"},
         ]
      });
 
@@ -131,6 +136,52 @@ $(document).ready(function() {
             }
         });
     });
+
+    $(document).on('click', '.edit', function(){
+        var id = $(this).attr("id");
+        $('#form_output').html('');
+        $.ajax({
+            url:"{{route('japan.fetchdata')}}",
+            method:'get',
+            data:{id:id},
+            dataType:'json',
+            success:function(data)
+            {
+                $('#week').val(data.week);
+                $('#destination').val(data.destination);
+                $('#title').val(data.title);
+                $('#content').val(data.content);
+                $('#japan_id').val(id);
+                $('#japanModal').modal('show');
+                $('#action').val('Edit');
+                $('.modal-title').text('Edit Data');
+                $('#button_action').val('update');
+            }
+        })
+    });
+
+    $(document).on('click', '.delete', function(){
+        var id = $(this).attr('id');
+        if(confirm("Are you sure you want to Delete this data?"))
+        {
+            $.ajax({
+                url:"{{route('japan.removedata')}}",
+                mehtod:"get",
+                data:{id:id},
+                success:function(data)
+                {
+                    alert(data);
+                    $('#japan_table').DataTable().ajax.reload();
+                }
+            })
+        }
+        else
+        {
+            return false;
+        }
+    });
+
+
 });
 </script>
 </body>

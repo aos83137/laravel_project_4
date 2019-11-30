@@ -40,7 +40,13 @@ Route::get('japan', 'JapanController@index')->name('japan');
 
 Route::get('japan/getdata', 'JapanController@getdata')->name('japan.getdata');
 
+Route::get('japan/show{id}', 'JapanController@show')->name('japan.show');
+
 Route::post('japan/postdata', 'JapanController@postdata')->name('japan.postdata');
+
+Route::get('japan/fetchdata', 'JapanController@fetchdata')->name('japan.fetchdata');
+
+Route::get('japan/removedata', 'JapanController@removedata')->name('japan.removedata');
 
 
 
