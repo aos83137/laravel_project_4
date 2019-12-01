@@ -36,6 +36,15 @@ Route::post('custom-login','CustomAuthController@login');
 
 // Route::post('/questions', 'QuestionsController@ajaxUserInfo')->name('ajaxRequest.post');
 
+Route::get('japan', 'JapanController@index')->name('japan');
+
+Route::get('japan/getdata', 'JapanController@getdata')->name('japan.getdata');
+
+Route::post('japan/postdata', 'JapanController@postdata')->name('japan.postdata');
+
+
+
+
 Route::get('logout', 'CustomAuthController@logout');
 
 Route::post('logout', 'CustomAuthController@logout')->name('logout');

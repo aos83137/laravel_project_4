@@ -10,6 +10,10 @@
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
     @yield('style')
     
+    <script
+    src="http://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app-layout">

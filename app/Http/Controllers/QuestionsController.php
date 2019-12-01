@@ -18,7 +18,8 @@ class QuestionsController extends Controller
     public function show($id){
         $question = \App\Question::find($id);
         $comments =  $question->comments()->get();
-        return view('view.question',compact('question','comments'));
+        $user = Auth::user();
+        return view('view.question',compact('question','comments','user'));
     }
 
     public function create(){

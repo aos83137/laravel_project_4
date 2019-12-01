@@ -11,9 +11,11 @@
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.4",
+        "laracasts/flash": "^3.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^1.0",
-        "laravel/ui": "^1.1"
+        "laravel/ui": "^1.1",
+        "yajra/laravel-datatables-oracle": "^9.7"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
@@ -30,7 +32,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+              "laravel/dusk"
+            ]
         }
     },
     "autoload": {
@@ -41,7 +45,7 @@
             "database/seeds",
             "database/factories"
         ],
-        "files": [ 
+        "files": [
             "app/Http/helpers.php"
         ]
     },

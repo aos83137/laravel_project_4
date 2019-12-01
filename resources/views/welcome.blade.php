@@ -13,7 +13,7 @@
         <style>
             html, body {
                 background: repeating-linear-gradient(45deg, white 50%,skyblue 30%, blue);
-                color: #8A0829;                
+                color: #8A0829;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 500;
                 height: 100vh;
@@ -21,7 +21,7 @@
                 padding: 0;
                 height: 100%;
             }
-            
+
             @keyframes slidein {
                 from {
                     margin-left: 100%;
@@ -36,8 +36,8 @@
                     margin-left: 25%;
                     width: 150%;
                 } */
-                
-            }	            
+
+            }
             .full-height {
                 height: 100vh;
             }
@@ -123,6 +123,7 @@
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                     <a href="{{ route('questions.index') }}">question</a>
+                    <a href="/japan">Semester</a>
                 </div>
             </div>
         </div>
