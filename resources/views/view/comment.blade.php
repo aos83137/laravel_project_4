@@ -16,8 +16,10 @@
                         },
 
                         }).then(function(data){
+                            @auth
                             var $div = $('<div class="commentsContents'+10+'"><hr>id : {{ $user->name }}<br>comment : '+data.comment+' <br> <button name="delete" class="btn btn-danger button__delete btn-sm" data-id="10" data-cnt="" >삭제</button>   <hr></div>');
                             $('#comments').append($div);
+                            @endauth
                         });
                     }else{
                         // error messag
