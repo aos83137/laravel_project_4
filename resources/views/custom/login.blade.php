@@ -13,7 +13,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-offset-3 col-lg-6">
-
+            @if(session('status'))
+                {{session('status')}}
+            @endif
                 @if(count($errors) > 0)
                     @foreach($errors->all() as $error)
                         <p class="alert alert-danger">{{$error}}</p>
