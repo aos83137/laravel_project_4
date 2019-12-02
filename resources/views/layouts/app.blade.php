@@ -73,7 +73,5 @@
             
         </main>
     </div>
-    <script src="{{ elixir('js/app.js') }}"></script>
-    @yield('script')
 </body>
 </html>

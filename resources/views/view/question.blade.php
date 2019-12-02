@@ -5,6 +5,7 @@
         display: inline;
     }
 </style>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <div class="container">
         {{-- 질문 div --}}
@@ -51,7 +52,7 @@
             <script>
                 $.ajaxSetup({
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
                     }
                 });
 
