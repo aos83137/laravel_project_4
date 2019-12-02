@@ -16,8 +16,21 @@ class CustomAuthController extends Controller
     {
         $this->validation($request);
         $request['password'] = bcrypt($request->password);
+        $request['confirm_code'] = $request->confirm_code;
         User::create($request->all());
-        return redirect('/')->with('Status', 'You are registed');
+        $confirmCode = str_random(60);
+
+        \Mail::send('emails.auth.confirm', compact('user'), function($message) use($user)
+        {
+            $message->to($user->email);
+            $message->subject(
+                sprintf('[%s] 회원 가입을 확인해 주세요.', config('app.name'))
+            );
+        });
+
+        flash('가입하신 메일 계정으로 가입 확인 메일을 보내드렸습니다. 가입 확인하시고 로그인해 주세요.');
+
+        return redirect('/');
     }
 
     public function showLoginForm()
@@ -36,9 +49,8 @@ class CustomAuthController extends Controller
         {    
             return redirect('/');
         }
-        // flash('이메일 또는 비밀번호가 맞지 않습니다');
-
-        // return back()->withInput();
+        
+        return back()->withErrors("이메일 혹은 비밀번호가 맞지 않습니다.");
     }
 
 
