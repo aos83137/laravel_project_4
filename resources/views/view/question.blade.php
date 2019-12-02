@@ -1,13 +1,21 @@
 @extends('layouts.app')
+
 @section('content')
 <style>
-    .xxxx{
+    .delete-form{
         display: inline;
     }
 </style>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <div class="container">
+        {{-- flash_message 코드임 --}}
+        @if (session()->has('flash_message'))
+            <div class="alert alert-info" role="alert">
+                {{ session('flash_message') }}
+            </div>    
+        @endif
+        {{-- flash_message 코드임 --}}
         {{-- 질문 div --}}
         <div>
             <h1>Q&A</h1>
@@ -98,7 +106,7 @@
                 @if (Auth::user()->name == 'admin')
                     <a class="btn btn-outline-primary pull-right" href="{{ route('questions.edit', $question->id ) }}">수정</a>
 
-                    <form class="xxxx" action="{{  route('questions.destroy', $question->id ) }}" method="POST">
+                    <form class="delete-form" action="{{  route('questions.destroy', $question->id ) }}" method="POST">
                     @method('DELETE')
                     @csrf
                     <input type="submit" class="btn btn-outline-danger pull-right" value="삭제"/>
