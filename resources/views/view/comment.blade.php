@@ -1,5 +1,9 @@
 <script>
-        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $(document).ready(function() {
                 $('.button__add').on('click', function(e){
                     comment = $('#comment').val();
@@ -12,10 +16,10 @@
                         },
 
                         }).then(function(data){
-                            // alert(data.success);
-                            var $div = $('<div class="commentsContents'+10+'"><hr>id : {{ $user->name }}<br>commnet : '+data.comment+' <br> <button name="delete" class="btn btn-danger button__delete" data-id="10" data-cnt="" >삭제</button>   <hr></div>');
+                            @auth
+                            var $div = $('<div class="commentsContents'+10+'"><hr>id : {{ $user->name }}<br>comment : '+data.comment+' <br> <button name="delete" class="btn btn-danger button__delete btn-sm" data-id="10" data-cnt="" >삭제</button>   <hr></div>');
                             $('#comments').append($div);
-                            
+                            @endauth
                         });
                     }else{
                         // error messag
@@ -24,7 +28,6 @@
         });
 
 </script>
-{{-- <form action="{{ route('comments.store',$id) }}" method="POST"> --}}
 @csrf
 <h3>댓글 달기</h3>
 <input type="text" name="comment" class="form-control" id="comment" value="">
@@ -42,6 +45,5 @@
 @endguest
 
 {!! $errors->first('comment', '<span class="form-error">:message</span>') !!}
-{{-- </form> --}}
 
 

@@ -1,25 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .link {
+        text-decoration: none;
+    }
+    .link:link{color: black;  text-decoration: none;}
+    .link:visited{color:gray;}
+    .link:hover{color: blue; font-weight: bold;}
+    .link:active{color: red;}
+</style>
     <div class="container">
         <h1>Q&A List</h1>
         <hr>
-        <ul>
+        <table class="table table-striped table-hover">
+            <tr>
+                <th class="text-center">번호</th>
+                <th class="text-center">제목</th>
+                <th class="text-center">글쓴이</th>
+                <th class="text-center">작성일</th>
+            </tr>
             @forelse ($questions as $question)
-                <div class="text-left">
-                    <a href="{{ route('questions.show', $question->id) }}">
-                        {{ $question->title }} <small>by {{ $question->user->name }}</small>
-                    </a>
-                </div>
+                <tr href="{{ route('questions.show', $question->id) }}">
+                    <th class="text-center">{{ $loop->index+1 }}</th>
+                    <td>
+                        <a class="link" href="{{ route('questions.show', $question->id) }}">
+                            {{ $question->title }}
+                        </a>
+                    </td>
+                    <td class="text-center">{{ $question->user->name }}</td>
+                    <td class="text-center">{{ explode(' ',$question->created_at)[0] }}</td>
+                </tr>
             @empty
                 <p>질문을 등록해 주세요.</p>
             @endforelse
-        </ul>
-    </div>
+        </table>
     
-    <div class="text-center" >
+    <div class="text-right" >
         @auth
-            <a href="{{ route('questions.create') }}">등록하기</a>
+            <a class="btn btn-primary" href="{{ route('questions.create') }}">등록하기</a>
 
         @endauth
         @guest
@@ -27,9 +46,10 @@
         @endguest
     </div>
     <hr>
-    @if ($questions->count())
         <div class="text-center">
-            {!! $questions->render() !!}
+            @if ($questions->count())
+                    {!! $questions->render() !!}
+            @endif
         </div>
-    @endif
+    </div>
 @endsection

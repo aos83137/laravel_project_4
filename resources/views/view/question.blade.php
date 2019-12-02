@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
-
+<style>
+    .xxxx{
+        display: inline;
+    }
+</style>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <div class="container">
         {{-- 질문 div --}}
@@ -33,10 +38,10 @@
                         @if (isset(Auth::user()->name))
                             @if (Auth::user()->name == 'admin')
                                 @csrf
-                                    <button name="delete" class="btn btn-danger button__delete" data-id="{{ $comment->id }}" data-cnt="{{ $loop->index }}" >삭제</button>
+                                    <button name="delete" class="btn btn-danger button__delete btn-sm" data-id="{{ $comment->id }}" data-cnt="{{ $loop->index }}" >삭제</button>
                             @elseif(Auth::user()->name == $comment->name)
                                 @csrf
-                                    <button name="delete" class="btn btn-danger button__delete" data-id="{{ $comment->id }}" data-cnt="{{ $loop->index }}" >삭제</button>
+                                    <button name="delete" class="btn btn-danger button__delete btn-sm" data-id="{{ $comment->id }}" data-cnt="{{ $loop->index }}" >삭제</button>
                             @endif
                         @endif
                     <hr>
@@ -47,25 +52,30 @@
             <script>
                 $.ajaxSetup({
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
                     }
                 });
 
                 $('.button__delete').on('click', function(e){
-                    alert('test');
-                    var commentId = $(this).data('id');
-                    var questionId = {{ $question->id }};
-                    var index = $(this).data('cnt');
-                    $.ajax({        
-                        type:'DELETE',
-                        url:'/comments/'+commentId ,
-                        dataType:"html",
-                        success:function(data){
-                        }
-                    }).then(function(data){
-                        $('.commentsContents'+index).remove();
-                    });
-                    
+                    if(confirm('글을 삭제합니다.')){
+                        var commentId = $(this).data('id');
+                        var questionId = {{ $question->id }};
+                        var index = $(this).data('cnt');
+                        $.ajax({        
+                            type:'DELETE',
+                            url:'/comments/'+commentId ,
+                            dataType:"html",
+                            contentType: false,
+                            processData: false,
+                            data:{
+                                "_token": "{{ csrf_token() }}",  
+                            },
+                            success:function(data){
+                            }
+                        }).then(function(data){
+                            $('.commentsContents'+index).remove();
+                        });
+                    }            
                 })
             </script>
         </div>
@@ -86,27 +96,27 @@
             @endguest
             @auth
                 @if (Auth::user()->name == 'admin')
-                    <a class="btn btn-primary" href="{{ route('questions.edit', $question->id ) }}">수정</a>
+                    <a class="btn btn-outline-primary pull-right" href="{{ route('questions.edit', $question->id ) }}">수정</a>
 
-                    <form action="{{  route('questions.destroy', $question->id ) }}" method="POST">
+                    <form class="xxxx" action="{{  route('questions.destroy', $question->id ) }}" method="POST">
                     @method('DELETE')
                     @csrf
-                    <input type="submit" class="btn btn-danger" value="삭제"/>
+                    <input type="submit" class="btn btn-outline-danger pull-right" value="삭제"/>
                     </form>
 
-                    <a class="btn btn-primary" href="{{ route('questions.index') }}">목록</a>
+                    <a class="btn btn-outline-primary" href="{{ route('questions.index') }}">목록</a>
                 @elseif(Auth::user()->id == $question->user_id)
-                    <a class="btn btn-primary" href="{{ route('questions.edit', $question->id ) }}">수정</a>
+                    <a class="btn btn-outline-primary pull-right" href="{{ route('questions.edit', $question->id ) }}">수정</a>
 
-                    <form action="{{  route('questions.destroy', $question->id ) }}" method="POST">
+                    <form class="xxxx" action="{{  route('questions.destroy', $question->id ) }}" method="POST">
                         @method('DELETE')
                         @csrf
-                        <input type="submit" class="btn btn-danger" value="삭제"/>
+                        <input type="submit" class="btn btn-ouline-danger " value="삭제"/>
                     </form>
 
-                    <a class="btn btn-primary" href="{{ route('questions.index') }}">목록</a>
+                    <a class="btn btn-outline-primary" href="{{ route('questions.index') }}">목록</a>
                 @else
-                    <a class="btn btn-primary" href="{{ route('questions.index') }}">목록</a>
+                    <a class="btn btn-outline-primary" href="{{ route('questions.index') }}">목록</a>
                 @endif                
             @endauth
         </div>

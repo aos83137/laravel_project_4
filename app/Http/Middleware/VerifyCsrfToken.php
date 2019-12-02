@@ -20,8 +20,8 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        'comments',
-        'comments/*',
+        // 'comments',
+        // 'comments/*',
     ];
 }
 

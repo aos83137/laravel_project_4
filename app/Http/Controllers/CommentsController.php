@@ -34,15 +34,15 @@ class CommentsController extends Controller
         // return  \App::make('redirect')->back()->with('flash_success', '댓글이 작성되었습!');
 
     }
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         // //
         \App\Comment::destroy($id);
-
-        return response()->json([
-            'success' => 'Record deleted successfully!'
-        ]);
-
+        if($request->ajax()){
+            return response()->json([
+                'success' => 'Record deleted successfully!'
+            ]);
+        }
         // return \App::make('redirect')->back()->with('flash_messsage','댓글이 삭제되었습니다.');
     }
 
