@@ -166,7 +166,7 @@ $(document).ready(function() {
         {
             $.ajax({
                 url:"{{route('japan.removedata')}}",
-                mehtod:"get",
+                type:"get",
                 data:{id:id},
                 success:function(data)
                 {
