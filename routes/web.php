@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -34,8 +23,6 @@ Route::get('custom-login','CustomAuthController@showLoginForm')->name('custom.lo
 
 Route::post('custom-login','CustomAuthController@login');
 
-// Route::post('/questions', 'QuestionsController@ajaxUserInfo')->name('ajaxRequest.post');
-
 Route::get('japan', 'JapanController@index')->name('japan');
 
 Route::get('japan/getdata', 'JapanController@getdata')->name('japan.getdata');
@@ -58,3 +45,7 @@ Route::post('logout', 'CustomAuthController@logout')->name('logout');
 Route::get('verifyEmailFirst','CustomAuthController@verifyEmailFirst')->name('verifyEmailFirst');
 
 Route::get('verify/{email}/{verifyToken}','CustomAuthController@sendEmailDone')->name('sendEmailDone');
+
+
+// Route::get('photo', 'ImageController@index');
+// Route::post('save-photo', 'ImageController@save');
