@@ -85,10 +85,11 @@
       box-sizing: border-box;
     }
 
-    body{
+    body,html{
       min-height: 100vh;
       /* background-image: linear-gradient(120deg,#3498db,#8e44ad); */
       background: linear-gradient(to bottom, #F5A9A9,#D8CEF6);
+      font-family: 'Nunito', sans-serif;
     }
 
     .login-form{
@@ -179,7 +180,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
   </head>
   <body>
-    <h1> Team 2 </h1>
+    <h1 style=margin-left:10px;> Team Four </h1>
           <form action="{{ route('custom.login') }}" class="login-form">
             <h1>로그인</h1>
 
