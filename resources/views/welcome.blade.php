@@ -195,6 +195,7 @@
                 <div class="links">
                     <a href="{{ route('questions.index') }}">question</a>
                     <a href="/japan">Semester</a>
+                    <a href="{{ url('/photo') }}">Photo</a>
                 </div>
             </div>
             <div class="box">
@@ -205,7 +206,7 @@
                 <div class='wave -one'></div>
                     <div class='wave -two'></div>
                     <div class='wave -three'></div>
-                    <div class="top-right links"> 
+                    <div class="top-right links">
                 </div>
             </div>
         <!-- <div>
