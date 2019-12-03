@@ -71,8 +71,8 @@
         </nav>
 
         <main class="py-4">
+            <script src="{{ elixir('js/app.js') }}"></script>
             @yield('content')
-            
         </main>
     </div>
 </body>

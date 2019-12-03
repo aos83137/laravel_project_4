@@ -33,11 +33,17 @@
 <input type="text" name="comment" class="form-control" id="comment" value="">
 
 @auth
-    <button class="btn btn-outline-primary button__add ">등록</button>
+<div>
+    <button class="btn btn-danger button__add">등록</button>
+    {{-- <button name="delete" class="btn btn-danger button__delete" data-id="{{ $comment->id }}" >삭제</button> --}}
+
+    {{-- <input type="submit" class="btn btn-danger" value="등록"/>   --}}
+</div>
 @endauth
 @guest
     <p>로그인 해주세요</p>
 @endguest
 
 {!! $errors->first('comment', '<span class="form-error">:message</span>') !!}
+
 
