@@ -23,7 +23,7 @@
                 <form id="createform" enctype="multipart/form-data">
                     <div class="form-group myid">
                         <label>id</label>
-                        <input type="number" id="id" class="form-control" readonly="readonly">
+                        <input type="number" id="id" name="id" class="form-control" readonly="readonly">
                     </div>
                     <div class="form-group">
                         <label for="name">이름</label>
@@ -93,9 +93,10 @@
         viewData();
 
         function saveData(){
+
             var form = $('#createform')[0];
             var data = new FormData(form);
-  
+    
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
@@ -104,7 +105,6 @@
                 processData: false,
                 url: '/members',
                 success: function(response){
-                    console.log('ss');
                     viewData();
                     clearData();
                     $('#save').show();
@@ -118,7 +118,7 @@
         function clearData(){
             $('#name').val('');
             $('#body').val('');
-            $('#files').val('');
+            $('#file').val('');
 
         }
 
@@ -128,6 +128,8 @@
             $('#update').show();
             $('.myid').show();
 
+
+
             $.ajax({
                 type: "GET",
                 dataType: "json",
@@ -136,24 +138,27 @@
                     $('#id').val(response.id);
                     $('#name').val(response.name);
                     $('#body').val(response.body);
-                    $('#files').val(response.img);
+            
                 }
-            })
+            });
     
         }
 
         function updateData(){
+            console.log('ee');
             var id = $('#id').val();
+     
             var form = $('#createform')[0];
             var data = new FormData(form);
-            
+            console.log(id);
+            console.log(form);
             $.ajax({
-                type: "PUT",
+                type: "POST",
                 dataType: "json",
-                data: data,
+                data: data ,
+                url: '/members/'+ id,
                 contentType: false,
                 processData: false,
-                url: '/members/'+id,
                 success: function(response){
                     viewData();
                     clearData();
@@ -162,7 +167,8 @@
                     $('.myid').hide();
                     $('#createform').hide();
                 }
-            })
+            });
+
         }
 
         function deleteData(id){
@@ -173,7 +179,7 @@
                 success: function(response){
                     viewData();
                 }
-            })
+            });
         }
 
 

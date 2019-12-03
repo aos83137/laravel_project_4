@@ -22,20 +22,19 @@ class MemberController extends Controller
 
     public function store(Request $request)
     {
-        
+
         $img = $request->file("files");
         $filename = Str::random(15).filter_var($img->getClientOriginalName(),FILTER_SANITIZE_URL);
         $img -> move(public_path('files'), $filename);
         
-        // $member=\App\Member::create($request->all());
+        
         $member = new Member([
             'name'=> $request->get('name'),
             'body'=>$request->get('body'),
             'img'=>$filename,
         ]);
-       
+        
         $member->save();
-            
         return response()->json($member);
      
     }
@@ -48,8 +47,17 @@ class MemberController extends Controller
 
     public function update(Request $request, $id)
     {
-        $member = Member::find($id)->update($request->all());
 
+        $img = $request->file("files");
+        $filename = Str::random(15).filter_var($img->getClientOriginalName(),FILTER_SANITIZE_URL);
+        $img -> move(public_path('files'), $filename);
+
+    
+        $member = Member::find($id)->update([
+            'name'=>$request->name,
+            'body'=>$request->body,
+            'img'=>$filename,
+        ]);
         
         return response()->json($member);
     }
