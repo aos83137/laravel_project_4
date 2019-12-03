@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Member;
 use Illuminate\Support\Str;
 
-class MembersController extends Controller
+class MemberController extends Controller
 {
     public function index()
     {
@@ -25,7 +25,7 @@ class MembersController extends Controller
         
         $img = $request->file("files");
         $filename = Str::random(15).filter_var($img->getClientOriginalName(),FILTER_SANITIZE_URL);
-        $img -> move(public_path('members'), $filename);
+        $img -> move(public_path('files'), $filename);
         
         // $member=\App\Member::create($request->all());
         $member = new Member([
@@ -49,6 +49,8 @@ class MembersController extends Controller
     public function update(Request $request, $id)
     {
         $member = Member::find($id)->update($request->all());
+
+        
         return response()->json($member);
     }
 
@@ -57,4 +59,6 @@ class MembersController extends Controller
         Member::find($id)->delete();
         return response()->json(['done']);
     }
+
+
 }

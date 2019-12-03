@@ -22,18 +22,17 @@ class MembersRequest extends FormRequest
      * @return array
      */
 
-    protected $dontFlash = ['files'];
 
     public function rules()
     {
         return [
             'name'=>['required'], // '필드'=>'검사조건'
             'body'=>['required'],
-            'files'=>['array'],
+            'img'=>['required'],
         ];
     }
     public function attributes(){
-        return [ 'name'=>'이름', 'body'=>'조원소개'];
+        return [ 'name'=>'이름', 'body'=>'조원소개','img'=>'조원사진'];
     }
     public function message(){
         return [

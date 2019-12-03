@@ -18,9 +18,11 @@ Route::get('/', function () {
 
 
 
-Route::resource('/questions','QuestionsController');
+Route::resource('members','MemberController');
 
-Route::resource('members', 'MembersController');
+Route::get('/member','MemberController@create');
+
+Route::resource('/questions','QuestionsController');
 
 Route::post('/comments/{id}','CommentsController@store')->name('comments.store');
 

@@ -7,10 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
     public $timestamps=false;
-    protected $fillable=['name','body'];
+    protected $table = "members";
+    protected $fillable=['name','body','img'];
 
-    public function attachments()
-    {
-        return $this->hasMany(Attachment::class);
-    }
+
 }
