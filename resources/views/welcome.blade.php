@@ -195,7 +195,7 @@
                 <div class="links">
                     <a href="{{ route('questions.index') }}">question</a>
                     <a href="/japan">Semester</a>
-                    <a href="{{ url('/photo') }}">Photo</a>
+                    <!-- <a href="{{ url('/photo') }}">Photo</a> -->
                 </div>
             </div>
             <div class="box">

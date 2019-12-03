@@ -47,5 +47,5 @@ Route::get('verifyEmailFirst','CustomAuthController@verifyEmailFirst')->name('ve
 Route::get('verify/{email}/{verifyToken}','CustomAuthController@sendEmailDone')->name('sendEmailDone');
 
 
-Route::get('photo', 'ImageController@index');
-Route::post('save-photo', 'ImageController@save');
+// Route::get('photo', 'ImageController@index');
+// Route::post('save-photo', 'ImageController@save');
