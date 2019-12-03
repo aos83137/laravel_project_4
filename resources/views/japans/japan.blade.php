@@ -13,7 +13,7 @@
 
 <div class="container">
     <br />
-    <h1 align="center">Semester In Japan</h1>
+    <h1 align="center">현지학기제</h1>
     <br />
     <div align="right">
         <button type="button" name="add" id="add_data" class="btn btn-success btn-sm">Add</button>
