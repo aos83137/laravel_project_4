@@ -98,7 +98,7 @@
 
 
         {{-- 질문 CRUD버튼 --}}
-        <div>
+        <div class="comment_button">
             @guest
                 <a class="btn btn-primary" href="{{ route('questions.index') }}">목록</a>        
             @endguest
