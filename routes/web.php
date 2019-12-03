@@ -11,6 +11,8 @@ Route::resource('members','MemberController');
 
 Route::get('/member','MemberController@create');
 
+Route::post('/members/{id}','MemberController@update');
+
 Route::resource('/questions','QuestionsController');
 
 Route::post('/comments/{id}','CommentsController@store')->name('comments.store');
