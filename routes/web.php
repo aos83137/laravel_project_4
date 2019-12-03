@@ -23,8 +23,6 @@ Route::get('custom-login','CustomAuthController@showLoginForm')->name('custom.lo
 
 Route::post('custom-login','CustomAuthController@login');
 
-// Route::post('/questions', 'QuestionsController@ajaxUserInfo')->name('ajaxRequest.post');
-
 Route::get('japan', 'JapanController@index')->name('japan');
 
 Route::get('japan/getdata', 'JapanController@getdata')->name('japan.getdata');
