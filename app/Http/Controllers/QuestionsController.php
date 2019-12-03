@@ -25,7 +25,6 @@ class QuestionsController extends Controller
     public function create(){
         return view('view.register',[
             'question' => FALSE,
-            //view.register에 저장하기 버튼 if로 분기 나누기위한 변수
         ]);
     }
 
@@ -36,10 +35,10 @@ class QuestionsController extends Controller
         $question = \App\User::find($id)->questions()->create($request->all());
 
         if(! $question){
-            return back()->with('flash_messagge', '질문이 저장되지 않았습니다.')->withInput();
+            return back()->with('flash_message', '질문이 저장되지 않았습니다.')->withInput();
         }
 
-        return redirect(route('questions.index'))->with('flash_messsage','작성하신 질문이 저장되었습니다.');
+        return redirect(route('questions.index'))->with('flash_message','작성하신 질문이 저장되었습니다.');
     }
 
     public function edit($id)
@@ -62,8 +61,7 @@ class QuestionsController extends Controller
         //
         $question = \App\Question::find($id)->update($request->all());
 
-        return redirect()->route('questions.show', [$id]);
-        // return redirect(route('questions.index'))->with('flash_messsage','작성하신 질문이 수정되었습니다.');
+        return redirect()->route('questions.show', [$id])->with('flash_message','질문이 수정되었습니다.');
     }
 
     /**
@@ -77,11 +75,6 @@ class QuestionsController extends Controller
         //
         \App\Question::destroy($id);
 
-        return redirect(route('questions.index'))->with('flash_messsage','질문이 삭제되었습니다.');
-    }
-
-    public function ajaxUserInfo(Request $request){
-
-        return response()->json(['success'=>'Got Simple Ajax Request.']);
+        return redirect(route('questions.index'))->with('flash_message','질문이 삭제되었습니다.');
     }
 }

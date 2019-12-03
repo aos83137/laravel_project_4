@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Illuminate\Support\Str;
+use Mail;
+use App\Mail\verifyEmail;
+use Session;
+
 class CustomAuthController extends Controller
 {
     public function showRegisterForm()
@@ -14,23 +19,49 @@ class CustomAuthController extends Controller
 
     public function register(Request $request)
     {
-        $this->validation($request);
-        $request['password'] = bcrypt($request->password);
-        $request['confirm_code'] = $request->confirm_code;
-        User::create($request->all());
-        $confirmCode = str_random(60);
+        $this->validate($request,[
+            'name' => ['required', 'max:255'],
+            'email' => ['required', 'email', 'unique:users', 'max:255'],
+            'password' => ['required', 'confirmed', 'max:255'],
+        ]);
 
-        \Mail::send('emails.auth.confirm', compact('user'), function($message) use($user)
-        {
-            $message->to($user->email);
-            $message->subject(
-                sprintf('[%s] 회원 가입을 확인해 주세요.', config('app.name'))
-            );
-        });
+        Session::flash('status', '등록을 위해 이메일을 확인하시오.');
+        $user = User::create([
+            'name'=>$request->input('name'),
+            'email'=>$request->input('email'),
+            'password'=>bcrypt($request->input('password')),
+            'verifyToken'=>Str::random(40),
+        ]);
 
-        flash('가입하신 메일 계정으로 가입 확인 메일을 보내드렸습니다. 가입 확인하시고 로그인해 주세요.');
+        $thisUser = User::findOrFail($user->id);
+        $this->sendEmail($thisUser);
 
-        return redirect('/');
+        return redirect(route('custom.login'));
+        // $this->validation($request);
+        // $request['password'] = bcrypt($request->password);
+        // User::create($request->all());
+        
+    }
+
+    public function verifyEmailFirst()
+    {
+        return view('emails/verifyEmailFirst');
+    }
+
+    public function sendEmail($thisUser)
+    {
+        Mail::to($thisUser['email'])->send(new verifyEmail($thisUser));
+    }
+
+    public function sendEmailDone($email, $verifyToken)
+    {
+        $user = User::where(['email'=>$email, 'verifyToken' => $verifyToken])->first();
+        if($user){    
+            return user::where(['email'=>$email, 'verifyToken' => $verifyToken])->update(['status'=>'1','verifyToken'=>NULL]);   
+        }
+        else{
+            return 'user not found';
+        }
     }
 
     public function showLoginForm()
@@ -54,14 +85,14 @@ class CustomAuthController extends Controller
     }
 
 
-    public function validation($request)
-    {
-        return $validatedData = $request->validate([
-                'name' => ['required', 'max:255'],
-                'email' => ['required', 'email', 'unique:users', 'max:255'],
-                'password' => ['required', 'confirmed', 'max:255'],
-            ]);
-    }
+    // public function validation($request)
+    // {
+    //     return $validatedData = $request->validate([
+    //             'name' => ['required', 'max:255'],
+    //             'email' => ['required', 'email', 'unique:users', 'max:255'],
+    //             'password' => ['required', 'confirmed', 'max:255'],
+    //         ]);
+    // }
 
     public function logout(Request $request)
     {

@@ -11,6 +11,13 @@
     .link:active{color: red;}
 </style>
     <div class="container">
+        {{-- flash_message 코드임 --}}
+        @if (session()->has('flash_message'))
+            <div class="alert alert-info" role="alert">
+                {{ session('flash_message') }}
+            </div>    
+        @endif
+        {{-- flash_message 코드임 --}}
         <h1>Q&A List</h1>
         <hr>
         <table class="table table-striped table-hover">

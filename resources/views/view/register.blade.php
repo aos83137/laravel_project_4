@@ -22,8 +22,8 @@
                 </div>
 
                 <div class="form-group">
-                    <a href="{{ route('questions.index') }}">취소</a>
-                    <input type="submit" class="btn btn-danger" value="등록"/>        
+                    <a class="btn btn-light" href="{{ route('questions.index') }}">취소</a>
+                    <input type="submit" class="btn btn-secondary" value="등록"/>        
                 </div>
             </form>
 
@@ -40,9 +40,9 @@
                         </textarea>
                         {!! $errors->first('content', '<span class="form-error">:message</span>') !!}
 
-                        <a href="{{ route('questions.show',$question->id) }}">취소</a>
+                        <a class="btn btn-light" href="{{ route('questions.show',$question->id) }}">취소</a>
                         @method('PATCH')
-                        <input type="submit" class="btn btn-danger" value="수정"/>
+                        <input type="submit" class="btn btn-secondary" value="수정"/>
                     </div>
             </form>
                 

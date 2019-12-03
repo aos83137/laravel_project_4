@@ -54,3 +54,7 @@ Route::get('japan/removedata', 'JapanController@removedata')->name('japan.remove
 Route::get('logout', 'CustomAuthController@logout');
 
 Route::post('logout', 'CustomAuthController@logout')->name('logout');
+
+Route::get('verifyEmailFirst','CustomAuthController@verifyEmailFirst')->name('verifyEmailFirst');
+
+Route::get('verify/{email}/{verifyToken}','CustomAuthController@sendEmailDone')->name('sendEmailDone');
