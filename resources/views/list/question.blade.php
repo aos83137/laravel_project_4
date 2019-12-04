@@ -9,6 +9,10 @@
     .link:visited{color:gray;}
     .link:hover{color: blue; font-weight: bold;}
     .link:active{color: red;}
+    table,th,td {
+        border: 1px solid #444444;
+        padding: 10px;
+    }
 </style>
     <div class="container">
         {{-- flash_message 코드임 --}}
