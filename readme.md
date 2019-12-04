@@ -18,7 +18,15 @@ laravel Team project 4
 6. (선택) seed로 qna 더미파일 생성 -> 추후 db더미파일을 활용하는 방도 고려
     - php .\artisan db:seed --class=UsersTableSeeder  
     - php .\artisan db:seed --class=QuestionsTableSeeder
-    - php .\artisan db:seed --class=CommentsTableSeeder 
+    - php .\artisan db:seed --class=CommentsTableSeeder
+    
+7. env 파일 변경
+    - MAIL_DRIVER=smtp
+    - MAIL_HOST=smtp.gmail.com  
+    - MAIL_PORT=587
+    - MAIL_USERNAME=rlaehwns9698@gmail.com
+    - MAIL_PASSWORD=ehwns9698@
+    - MAIL_ENCRYPTION=tls
 
 
 ## Yajra 설치방법 및 경로설정
