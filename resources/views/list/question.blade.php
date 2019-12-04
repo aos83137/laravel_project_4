@@ -9,14 +9,11 @@
     .link:visited{color:gray;}
     .link:hover{color: blue; font-weight: bold;}
     .link:active{color: red;}
-    table,th,td {
-        border: 1px solid #444444;
-        padding: 10px;
-    }
+
 </style>
     <div class="container">
         {{-- flash_message 코드임 --}}
-        @if (session()->has('flash_message'))
+        @if (session()->has('flash_message'))s
             <div class="alert alert-info" role="alert">
                 {{ session('flash_message') }}
             </div>    
