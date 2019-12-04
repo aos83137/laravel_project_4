@@ -18,6 +18,43 @@
     <div align="right">
         <button type="button" name="add" id="add_data" class="btn btn-success btn-sm">Add</button>
     </div>
+    @if(isset(Auth::user()->name))
+      @if(Auth::user()->name=='admin')
+      <input type="hidden" name="user_id" id="user_id" value="admin" />
+      @else
+      <input type="hidden" name="user_id" id="user_id" value="guest" />
+      @endif
+    @else
+      <input type="hidden" name="user_id" id="user_id" value="none" />
+    @endif
+
+    @if(isset(Auth::user()->name))
+        @if(Auth::user()->name=='admin')
+        <table id="japan_table" class="table table-bordered" style="width:50">
+            <thead>
+                <tr>
+                    <th style="width:15%">Week</th>
+                    <th style="width:15%">Destination</th>
+                    <th>Title</th>
+                    <th style="width:15%">Show</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+        @else
+        <table id="japan_table" class="table table-bordered" style="width:50">
+            <thead>
+                <tr>
+                    <th style="width:15%">Week</th>
+                    <th style="width:15%">Destination</th>
+                    <th>Title</th>
+                    <th style="width:15%">Show</th>
+
+                </tr>
+            </thead>
+        </table>
+        @endif
+    @else
     <table id="japan_table" class="table table-bordered" style="width:50">
         <thead>
             <tr>
@@ -25,10 +62,11 @@
                 <th style="width:15%">Destination</th>
                 <th>Title</th>
                 <th style="width:15%">Show</th>
-                <th>Action</th>
+
             </tr>
         </thead>
     </table>
+    @endif
 </div>
 
 <div id="japanModal" class="modal fade" role="dialog">
@@ -78,18 +116,48 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-     $('#japan_table').DataTable({
-        "processing": true,
-        "serverSide": true,
-        "ajax": "{{ route('japan.getdata') }}",
-        "columns":[
-            { "data": "week" },
-            { "data": "destination" },
-            { "data": "title"},
-            { "data": "show"},
-            { "data": "action"},
-        ]
-     });
+  if($('#user_id').val()=='admin'){
+    $('#japan_table').DataTable({
+       "processing": true,
+       "serverSide": true,
+       "ajax": "{{ route('japan.getdata') }}",
+       "columns":[
+           { "data": "week" },
+           { "data": "destination" },
+           { "data": "title"},
+           { "data": "show"},
+           { "data": "action"},
+       ]
+    });
+  }
+  else if($('#user_id').val()=='guest'){
+    $('#japan_table').DataTable({
+       "processing": true,
+       "serverSide": true,
+       "ajax": "{{ route('japan.getdata') }}",
+       "columns":[
+           { "data": "week" },
+           { "data": "destination" },
+           { "data": "title"},
+           { "data": "show"},
+       ]
+    });
+  }
+  else if($('#user_id').val()=='none'){
+    $('#japan_table').DataTable({
+       "processing": true,
+       "serverSide": true,
+       "ajax": "{{ route('japan.getdata') }}",
+       "columns":[
+           { "data": "week" },
+           { "data": "destination" },
+           { "data": "title"},
+           { "data": "show"},
+       ]
+    });
+  }
+
+
 
      $('#add_data').click(function(){
         $('#japanModal').modal('show');
