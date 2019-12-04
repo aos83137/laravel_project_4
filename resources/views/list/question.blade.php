@@ -23,10 +23,10 @@
         <hr>
         <table class="table table-striped table-hover">
             <tr>
-                <th class="text-center">번호</th>
-                <th class="text-center">제목</th>
-                <th class="text-center">글쓴이</th>
-                <th class="text-center">작성일</th>
+                <th class="text-center" style="width: 10%">번호</th>
+                <th class="text-center" style="width: 65%">제목</th>
+                <th class="text-center" style="width: 10%">글쓴이</th>
+                <th class="text-center" style="width: 15%">작성일</th>
             </tr>
             @forelse ($questions as $question)
                 <tr href="{{ route('questions.show', $question->id) }}">
