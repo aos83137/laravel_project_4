@@ -49,11 +49,15 @@ class JapanController extends Controller
         }
         else
         {
-
-          $image = $request->file("image");
-          $filename = Str::random(15).filter_var($image->getClientOriginalName(),FILTER_SANITIZE_URL);
-          $image->move(public_path('images'),$filename);
-
+          if($request->has("image")){
+              
+            $image = $request->file("image");
+            
+            $filename = Str::random(15).filter_var($image->getClientOriginalName(),FILTER_SANITIZE_URL);
+            $image->move(public_path('images'),$filename);
+          }else{
+            $filename = null;
+          }
             if($request->get('button_action') == "insert")
             {
 
