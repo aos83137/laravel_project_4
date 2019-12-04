@@ -193,15 +193,14 @@
                 </div>
             <div class="content">
                 <div class="links">
-                    <a href="{{ route('questions.index') }}">question</a>
                     <a href="/japan">Semester</a>
-                    <!-- <a href="{{ url('/photo') }}">Photo</a> -->
+                    <a href="/member">Member</a>
+                    <a href="{{ route('questions.index') }}">Q & A</a>
                 </div>
             </div>
             <div class="box">
                     <div class="title m-b-md">
-                        Laravel
-                        <!-- <img src="./img/logo.png"> -->
+                        Team 4
                     </div>
                 <div class='wave -one'></div>
                     <div class='wave -two'></div>
@@ -209,8 +208,5 @@
                     <div class="top-right links">
                 </div>
             </div>
-        <!-- <div>
-            <img src="./img/logo.png">
-        </div> -->
     </body>
 </html>
