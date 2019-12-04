@@ -13,7 +13,7 @@ class JapanController extends Controller
 {
   function index()
   {
-   return view('japans.japansddfg');
+   return view('japans.japan');
    //http://127.0.0:8000/ajaxdata
   }
 
