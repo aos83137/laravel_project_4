@@ -180,8 +180,17 @@
   </head>
   <body>
     <h1> Team 2 </h1>
-          <form action="{{ route('custom.login') }}" class="login-form">
-            <h1>로그인</h1>
+    @if(session('status'))
+        {{session('status')}}
+    @endif
+        @if(count($errors) > 0)
+            @foreach($errors->all() as $error)
+                <p class="alert alert-danger">{{$error}}</p>
+            @endforeach
+        @endif
+          <form action="{{ route('custom.login') }}" class="login-form" method="post">
+          {{csrf_field()}}
+            <h1>Team 2</h1>
 
             <div class="txtb">
               <input type="text" class="form-control" name="email" value="{{old('email')}}">
