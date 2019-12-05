@@ -59,6 +59,7 @@
         $('#save').show();
         $('#update').hide();
         $('.myid').hide();
+        $('#show').show();
 
         
         $.ajaxSetup({
@@ -123,6 +124,7 @@
 
             var form = $('#createform')[0];
             var data = new FormData(form);
+            $('#show').hide();
     
             $.ajax({
                 type: 'POST',
@@ -136,6 +138,7 @@
                     clearData();
                     $('#save').show();
                     $('#createform').hide();
+                    $('#show').show();
                 }
             });
         }
@@ -154,6 +157,7 @@
             $('#save').hide();
             $('#update').show();
             $('.myid').show();
+            $('#show').hide();
 
 
 
@@ -193,6 +197,8 @@
                     $('#update').hide();
                     $('.myid').hide();
                     $('#createform').hide();
+                    $('#show').show();
+                   
                 }
             });
 
