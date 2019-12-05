@@ -20,6 +20,12 @@ class MemberController extends Controller
         return view('members.memberdata');
     }
 
+    public function shows($id)
+    {
+        $member = Member::find($id);
+        return response()->json($member);
+    }
+
     public function store(Request $request)
     {
 

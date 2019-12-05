@@ -13,6 +13,8 @@ Route::get('/member','MemberController@create');
 
 Route::post('/members/{id}','MemberController@update');
 
+Route::get('/members/{id}/shows','MemberController@shows');
+
 Route::resource('/questions','QuestionsController');
 
 Route::post('/comments/{id}','CommentsController@store')->name('comments.store');
