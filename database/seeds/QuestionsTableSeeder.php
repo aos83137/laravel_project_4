@@ -22,7 +22,7 @@ class QuestionsTableSeeder extends Seeder
         $users->each(function ($user){
             $user->questions()->save(
                 factory(App\Question::class)->make()
-            );
+            ,10);
         });
     }
 }

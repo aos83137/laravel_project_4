@@ -6,6 +6,7 @@
         display: inline;
     }
 </style>
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <div class="container">
@@ -35,7 +36,7 @@
             <h3>Comment</h3>
                 
                 @forelse ($comments as $comment)    
-                   <div class="commentsContents{{ $loop->index }}">
+                   <div class="commentsContents{{ $comment->id }}">
                     <hr>
                         id :
                         {{ $comment->name }}
@@ -46,10 +47,10 @@
                         @if (isset(Auth::user()->name))
                             @if (Auth::user()->name == 'admin')
                                 @csrf
-                                    <button name="delete" class="btn btn-danger button__delete btn-sm" data-id="{{ $comment->id }}" data-cnt="{{ $loop->index }}" >삭제</button>
+                                    <button name="delete" class="btn btn-danger button__delete btn-sm" data-id="{{ $comment->id }}">삭제</button>
                             @elseif(Auth::user()->name == $comment->name)
                                 @csrf
-                                    <button name="delete" class="btn btn-danger button__delete btn-sm" data-id="{{ $comment->id }}" data-cnt="{{ $loop->index }}" >삭제</button>
+                                    <button name="delete" class="btn btn-danger button__delete btn-sm" data-id="{{ $comment->id }}">삭제</button>
                             @endif
                         @endif
                     <hr>
@@ -57,41 +58,31 @@
                 @empty
                     
                 @endforelse
-            <script>
-                $('.button__delete').on('click', function(e){
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-                    if(confirm('글을 삭제합니다.')){
-                        var commentId = $(this).data('id');
-                        var questionId = {{ $question->id }};
-                        var index = $(this).data('cnt');
-                        $.ajax({        
-                            type:'DELETE',
-                            url:'/comments/'+commentId ,
-                            dataType:"html",
-                            contentType: false,
-                            processData: false,
-                            data:{
-                                "_token": "{{ csrf_token() }}",  
-                            },
-                            success:function(data){
-                            }
-                        }).then(function(data){
-                            $('.commentsContents'+index).remove();
-                        });
-                    }            
-                })
-            </script>
         </div>
 
 
         {{-- 댓글달기 div --}}
         <div>
             <hr>
-                @include('view.comment',['id' => $question->id])
+                {{-- @include('view.comment',['id' => $question->id]) --}}
+                
+                @csrf
+                <h3>댓글 달기</h3>
+                <input type="text" name="comment" class="form-control" id="comment" value="">
+                
+                @auth
+                <div>
+                    <button class="btn btn-danger button__add">등록</button>
+                    {{-- <button name="delete" class="btn btn-danger button__delete" data-id="{{ $comment->id }}" >삭제</button> --}}
+                
+                    {{-- <input type="submit" class="btn btn-danger" value="등록"/>   --}}
+                </div>
+                @endauth
+                @guest
+                    <p>로그인 해주세요</p>
+                @endguest
+                
+                {!! $errors->first('comment', '<span class="form-error">:message</span>') !!}
             <hr>
         </div>
 
@@ -129,3 +120,57 @@
         </div>
     </div>
 @endsection
+
+@section('script')
+    <script>
+            $(document).ready(function() {
+                $('.button__delete').on('click', function(e){
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    if(confirm('글을 삭제합니다.')){
+                        var commentId = $(this).data('id');
+                        var questionId = {{ $question->id }};
+                        var index = $(this).data('cnt');
+                        $.ajax({        
+                            type:'DELETE',
+                            url:'/comments/'+commentId ,
+                            dataType:"html",
+                            contentType: false,
+                            processData: false,
+                        }).then(function(data){
+                            $('.commentsContents'+commentId).remove();
+                        }).catch();
+                    }            
+                })
+                $('.button__add').on('click', function(e){
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                        }
+                    }); 
+                    comment = $('#comment').val();
+
+                    if(comment!=''){
+                        $.ajax({
+                        url:"/comments/"+{{ $question->id }},
+                        method:"POST",
+                        data:{
+                            comment:comment
+                        },
+
+                        }).then(function(response){
+                            var $div = $('<div class="commentsContents'+response.id+'"><hr>id : {{ $user->name }}<br>comment : '+comment+' <br> <button name="delete" class="btn btn-danger button__delete btn-sm" data-id="{{ $comment->id }}">삭제</button>   <hr></div>');
+                            $('#comments').append($div);
+                        }).catch();
+                    }else{
+                        // error messag
+                    }   
+            });
+        });
+
+    </script>
+@stop
+

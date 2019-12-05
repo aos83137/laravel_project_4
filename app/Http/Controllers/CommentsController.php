@@ -12,7 +12,7 @@ class CommentsController extends Controller
         //
         if($request->ajax()){
             $comment = $request->comment;
-
+            
             $name = Auth::user()->name;
     
             $model = new \App\Comment;
@@ -21,14 +21,12 @@ class CommentsController extends Controller
             $model->name = $name;
             $model->save();
             
-            if(! $model){
+            $question = \App\Question::find($id);
+            $comments =  $question->comments()->get();            if(! $model){
                 return back()->with('flash_messagge', '댓글이 저장되지 않았습니다.')->withInput();
             }
-            return response()->json([
-                'success' => 'Record deleted successfully!',
-                'comment' => $comment,
-            ]);
-        }else{
+            return response()->json([$comments,'comment' => $comment]);
+            }else{
             
         }
         // return  \App::make('redirect')->back()->with('flash_success', '댓글이 작성되었습!');
