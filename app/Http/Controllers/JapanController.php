@@ -7,6 +7,7 @@ use App\Japan;
 use DataTables;
 use Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class JapanController extends Controller
 {
@@ -17,18 +18,43 @@ class JapanController extends Controller
   }
 
   function getdata()
-   {
-    $japans = Japan::select('id','title', 'content','destination','week');
-    return DataTables::of($japans)
-        ->addColumn('action', function($japan){
-                      return '<a href="#" class="btn btn-xs btn-primary edit" id="'.$japan->id.'"> Edit</a>
-                      <a href="#" class="btn btn-xs btn-danger delete" id="'.$japan->id.'"> Delete</a>';
-                    })->addColumn('show', function($japan){
-                      return '<a href="'.route('japan.show',$japan->id).'"> Show</a>';
-                      })->rawColumns(['action','show'])
-                      ->make(true);
-   }
+     {
 
+
+      $user = Auth::user();
+
+      $japans = Japan::select('id','title', 'content','destination','week');
+
+      if(isset($user)){
+
+        if($user->name=='admin'){
+          return DataTables::of($japans)
+              ->addColumn('action', function($japan){
+                            return '<a href="#" class="btn btn-xs btn-primary edit" id="'.$japan->id.'"> Edit</a>
+                            <a href="#" class="btn btn-xs btn-danger delete" id="'.$japan->id.'"> Delete</a>';
+                          })->addColumn('show', function($japan){
+                            return '<a href="'.route('japan.show',$japan->id).'"> Show</a>';
+                            })->rawColumns(['action','show'])
+                            ->make(true);
+        }
+        else{
+         return DataTables::of($japans)
+             ->addColumn('show', function($japan){
+                           return '<a href="'.route('japan.show',$japan->id).'"> Show</a>';
+                           })->rawColumns(['show'])->make(true);
+       }
+
+      }
+
+
+     else{
+      return DataTables::of($japans)
+          ->addColumn('show', function($japan){
+                        return '<a href="'.route('japan.show',$japan->id).'"> Show</a>';
+                        })->rawColumns(['show'])->make(true);
+    }
+
+    }
    function postdata(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -50,9 +76,9 @@ class JapanController extends Controller
         else
         {
           if($request->has("image")){
-              
+
             $image = $request->file("image");
-            
+
             $filename = Str::random(15).filter_var($image->getClientOriginalName(),FILTER_SANITIZE_URL);
             $image->move(public_path('images'),$filename);
           }else{
