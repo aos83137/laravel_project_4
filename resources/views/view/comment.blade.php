@@ -12,14 +12,16 @@
                         url:"/comments/"+{{ $question->id }},
                         method:"POST",
                         data:{
+                            // input태그 내용을  CommentsController로 보냄
                             comment:comment
                         },
 
                         }).then(function(data){
                             @auth
-                            var $div = $('<div class="commentsContents'+10+'"><hr>id : {{ $user->name }}<br>comment : '+data.comment+' <br> <button name="delete" class="btn btn-danger button__delete btn-sm" data-id="10" data-cnt="" >삭제</button>   <hr></div>');
+                            var $div = $('<div class="commentsContents'+data.comments.id+'"><hr>id : {{ $user->name }}<br>comment : '+data.comments.comment+' <br> <button onclick="btntest('+data.comments.id+')" name="delete" class="btn btn-danger button__delete btn-sm">삭제</button>   <hr></div>');
                             $('#comments').append($div);
                             @endauth
+                            $('#comment').val('');
                         });
                     }else{
                         // error messag
@@ -35,15 +37,10 @@
 @auth
 <div>
     <button class="btn btn-danger button__add">등록</button>
-    {{-- <button name="delete" class="btn btn-danger button__delete" data-id="{{ $comment->id }}" >삭제</button> --}}
-
-    {{-- <input type="submit" class="btn btn-danger" value="등록"/>   --}}
 </div>
 @endauth
 @guest
     <p>로그인 해주세요</p>
 @endguest
-
-{!! $errors->first('comment', '<span class="form-error">:message</span>') !!}
 
 

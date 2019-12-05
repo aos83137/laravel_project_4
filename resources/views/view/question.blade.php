@@ -47,16 +47,22 @@
                         @if (isset(Auth::user()->name))
                             @if (Auth::user()->name == 'admin')
                                 @csrf
+<<<<<<< Updated upstream
                                     <button name="delete" class="btn btn-danger button__delete btn-sm" data-id="{{ $comment->id }}">삭제</button>
                             @elseif(Auth::user()->name == $comment->name)
                                 @csrf
                                     <button name="delete" class="btn btn-danger button__delete btn-sm" data-id="{{ $comment->id }}">삭제</button>
+=======
+                                    <button name="delete" onclick="btntest('{{ $comment->id }}')" class="btn btn-danger btn-sm" data-id="{{ $comment->id }}" >삭제</button>
+                            @elseif(Auth::user()->name == $comment->name)
+                                @csrf
+                                    <button name="delete" onclick="btntest('{{ $comment->id }}')" class="btn btn-danger btn-sm" data-id="{{ $comment->id }}" >삭제</button>
+>>>>>>> Stashed changes
                             @endif
                         @endif
                     <hr>
                    </div>
                 @empty
-                    
                 @endforelse
         </div>
 
@@ -120,6 +126,7 @@
         </div>
     </div>
 @endsection
+<<<<<<< Updated upstream
 
 @section('script')
     <script>
@@ -174,3 +181,22 @@
     </script>
 @stop
 
+=======
+@section('script')
+    <script type="text/javascript">
+        function btntest(id){
+            if(confirm('글을 삭제합니다.')){
+                $.ajax({        
+                    type:'DELETE',
+                    url:'/comments/'+id ,
+                    dataType:"html",
+                    contentType: false,
+                    processData: false,
+                }).then(function(data){
+                    $('.commentsContents'+id).remove();
+                });
+            }
+        }
+    </script>
+@endsection
+>>>>>>> Stashed changes

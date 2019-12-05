@@ -11,6 +11,7 @@ class CommentsController extends Controller
     {
         //
         if($request->ajax()){
+            //comment.blade.php 의 댓글 내용을 받는 변수 $comment
             $comment = $request->comment;
             
             $name = Auth::user()->name;
@@ -20,6 +21,7 @@ class CommentsController extends Controller
             $model->question_id=$id;
             $model->name = $name;
             $model->save();
+<<<<<<< Updated upstream
             
             $question = \App\Question::find($id);
             $comments =  $question->comments()->get();            if(! $model){
@@ -27,6 +29,19 @@ class CommentsController extends Controller
             }
             return response()->json([$comments,'comment' => $comment]);
             }else{
+=======
+
+            $question = \App\Question::find($id);
+            $comments =  $question->comments()->latest()->first();
+
+            if(! $model){
+                return back()->with('flash_messagge', '댓글이 저장되지 않았습니다.')->withInput();
+            }
+            return response()->json([
+                'comments' => $comments,
+            ]);
+        }else{
+>>>>>>> Stashed changes
             
         }
         // return  \App::make('redirect')->back()->with('flash_success', '댓글이 작성되었습!');
@@ -41,7 +56,5 @@ class CommentsController extends Controller
                 'success' => 'Record deleted successfully!'
             ]);
         }
-        // return \App::make('redirect')->back()->with('flash_messsage','댓글이 삭제되었습니다.');
     }
-
 }
