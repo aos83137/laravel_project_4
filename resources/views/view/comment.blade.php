@@ -17,6 +17,7 @@
                         },
                         }).then(function(data){
                             @auth
+                            console.log(data);
                             var $div = $('<div class="commentsContents'+data.comments.id+'"><hr>id : {{ $user->name }}<br>comment : '+data.comments.comment+' <br> <button onclick="btntest('+data.comments.id+')" name="delete" class="btn btn-danger button__delete btn-sm">삭제</button>   <hr></div>');
                             $('#comments').append($div);
                             @endauth

@@ -112,6 +112,7 @@
                     contentType: false,
                     processData: false,
                 }).then(function(data){
+                    console.log(data);
                     $('.commentsContents'+id).remove();
                 });
             }
