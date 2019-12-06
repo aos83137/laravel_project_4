@@ -31,11 +31,11 @@
 
 </script>
 @csrf
-<h3>댓글 달기</h3>
+<h7>댓글 달기</h7>
 <input type="text" name="comment" class="form-control" id="comment" value="">
 
 @auth
-<div>
+<div style="margin-top:5px">
     <button class="btn btn-danger button__add">등록</button>
 </div>
 @endauth

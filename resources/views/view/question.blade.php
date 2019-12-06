@@ -2,8 +2,17 @@
 
 @section('content')
 <style>
+    html,body{
+        background: linear-gradient(to right, #F8ECE0,#A9F5D0);
+    }
     .delete-form{
         display: inline;
+    }
+    .p_text{
+        height:200px;
+    }
+    .h1{
+        font-size:xx-large;
     }
 </style>
 
@@ -19,13 +28,16 @@
         {{-- flash_message 코드임 --}}
         {{-- 질문 div --}}
         <div>
-            <h1>Q&A</h1>
+            <h1 style="font-size:70px" align="center">Q&A</h1>
             <hr>
-            <h1>
-                질문 : {{ $question->title }}
-            </h1>
-            <small>질문자 : {{ $question->user->name }}</small>
-            <p>{{ $question->content }}</p>
+            <h2 align="center">
+                {{ $question->title }}
+            </h2>
+            <h6 align="right">질문자 : {{ $question->user->name }}</h6>
+            <hr>
+            <div class="p_text">
+            {{ $question->content }}
+            </div>
             <hr>
         </div>
         
@@ -33,7 +45,7 @@
 
         {{-- 댓글 div --}}
         <div id="comments">
-            <h3>Comment</h3>
+            <h5>Comment</h5>
                 
                 @forelse ($comments as $comment)    
                    <div class="commentsContents{{ $comment->id }}">
@@ -85,15 +97,15 @@
 
                     <a class="btn btn-outline-primary" href="{{ route('questions.index') }}">목록</a>
                 @elseif(Auth::user()->id == $question->user_id)
-                    <a class="btn btn-outline-primary pull-right" href="{{ route('questions.edit', $question->id ) }}">수정</a>
+                <a class="btn btn-outline-primary pull-right" href="{{ route('questions.edit', $question->id ) }}">수정</a>
 
-                    <form class="xxxx" action="{{  route('questions.destroy', $question->id ) }}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <input type="submit" class="btn btn-ouline-danger " value="삭제"/>
-                    </form>
+                <form class="delete-form" action="{{  route('questions.destroy', $question->id ) }}" method="POST">
+                @method('DELETE')
+                @csrf
+                <input type="submit" class="btn btn-outline-danger pull-right" value="삭제"/>
+                </form>
 
-                    <a class="btn btn-outline-primary" href="{{ route('questions.index') }}">목록</a>
+                <a class="btn btn-outline-primary" href="{{ route('questions.index') }}">목록</a>
                 @else
                     <a class="btn btn-outline-primary" href="{{ route('questions.index') }}">목록</a>
                 @endif                

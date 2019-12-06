@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+<style>
+
+</style>
     <div class="container">
 
         <button type="button" id="create" onclick="create()" class="btn btn-primary" style="width:100px;">조원추가</button>

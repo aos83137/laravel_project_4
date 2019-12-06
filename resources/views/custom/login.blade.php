@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       text-decoration: none;
-      font-family: montserrat;
+      font-family: sans-serif;
       box-sizing: border-box;
     }
 
@@ -67,6 +67,8 @@
     .txtb span::after{
       content: '';
       position: absolute;
+      right:0px;
+      top:39.7px;
       width: 0%;
       height: 2px;
       background: linear-gradient(120deg,#3498db,#8e44ad);
@@ -107,7 +109,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
   </head>
   <body>
-    <h1> Team 2 </h1>
+    <h1> Team 1 </h1>
     @if(session('status'))
         {{session('status')}}
     @endif
@@ -118,7 +120,7 @@
         @endif
           <form action="{{ route('custom.login') }}" class="login-form" method="post">
             {{csrf_field()}}
-            <h1>Team 2</h1>
+            <h1>Team 1</h1>
             <div class="txtb">
               <input type="text" class="form-control" name="email">
               <span data-placeholder="이메일"></span>
