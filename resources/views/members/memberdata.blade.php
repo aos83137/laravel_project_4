@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="container">
 
@@ -19,7 +18,6 @@
                     </thead>
                     <tbody id="list"></tbody>
                 </table>
-                
             </div>
             <div calss="col-nd-4">
                 <form id="createform" enctype="multipart/form-data">
