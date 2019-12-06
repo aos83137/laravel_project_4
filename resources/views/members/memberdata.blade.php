@@ -8,55 +8,9 @@
             @if (Auth::user()->name == 'admin')
                 @csrf
 
-<<<<<<< HEAD
-        <button type="button" id="create" onclick="create()" class="btn btn-primary" style="width:100px;">조원추가</button>
-
-        <div class="row">
-            <div class="col-nd-8">
-                <table class="table table-dark table-hover table-bordered" id="tableid">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>이름</th>   
-                            <th>조원소개</th>  
-                            <th>수정</th>
-                            <th>삭제</th>
-                        </tr>
-                    </thead>
-                    <tbody id="list"></tbody>
-                </table>
-            </div>
-            <div calss="col-nd-4">
-                <form id="createform" enctype="multipart/form-data">
-                    <div class="form-group myid">
-                        <label>id</label>
-                        <input type="number" id="id" name="id" class="form-control" readonly="readonly">
-                    </div>
-                    <div class="form-group">
-                        <label for="name">이름</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="이름">        
-                    </div>
-
-                    <div class="form-group">
-                        <label for="body">조원소개</label>
-                        <textarea name="body" id="body" rows="10" class="form-control"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="file">조원사진</label>
-                        <input type="file" name=files class="form-control" id="file">
-                    </div> 
-
-
-                    <button type="button" id="save" onclick="saveData()" class="btn btn-primary" style="width:80px;">저장</button>
-                    <button type="button" id="update" onclick="updateData()" class="btn btn-warning" style="width:80px;">수정</button>               
-                </form>
-            </div>
-            <div id="show"></div>
-=======
                     <button type="button" id="create" onclick="create()" class="btn btn-primary" style="width:100px;">조원추가</button>
-                
-                    
+
+                   
                         <div class="col-nd-8">
                             <table class="table table-dark table-hover table-bordered" id="tableid">
                                 <thead>
@@ -74,11 +28,9 @@
             @elseif (Auth::user()->name != 'admin')
                 @csrf
                     <div id="guest"></div>
-    
             @endif
         @endif
         <div calss="col-nd-4">
-
             <form id="createform" enctype="multipart/form-data">
                 <div class="form-group myid">
                     <label>id</label>
@@ -103,14 +55,11 @@
                 <button type="button" id="save" onclick="saveData()" class="btn btn-primary" style="width:80px;">저장</button>
                 <button type="button" id="update" onclick="updateData()" class="btn btn-warning" style="width:80px;">수정</button>               
             </form>
-                    
->>>>>>> 5cc59f17b57e73177f6a16d1c18748c6d0e724d1
         </div>
-        <div id="show"></div>
+        <div id="show"></div> 
         @guest
-            <h2>로그인해주세요</h2>
-        @endguest       
-        
+        <h2>로그인해주세요</h2>
+        @endguest
     </div>
      
 @stop
