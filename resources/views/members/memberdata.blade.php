@@ -40,16 +40,12 @@ tr:hover{
         @endif
         
         <div calss="col-nd-4">
-<<<<<<< HEAD
             <div class="alert alert-danger false" style="display: none">
                 내용을 다 입력해주세요.
             </div>
             <div class="alert alert-primary true" style="display: none">
                 저장되었습니다.
             </div>
-=======
-        <br>
->>>>>>> 2cc0754d927053bc19a4e1915b21d2726545c7e9
             <form id="createform" enctype="multipart/form-data">
                 <div class="form-group myid">
                     <label>id</label>
