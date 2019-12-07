@@ -4,6 +4,8 @@
 
 </style>
     <div class="container">
+
+
         @if (isset(Auth::user()->name))
             @if (Auth::user()->name == 'admin')
                 @csrf
@@ -31,14 +33,22 @@
             @endif
         @endif
         <div calss="col-nd-4">
+            <div class="alert alert-danger false" style="display: none">
+                내용을 다 입력해주세요.
+            </div>
+            <div class="alert alert-primary true" style="display: none">
+                저장되었습니다.
+            </div>
             <form id="createform" enctype="multipart/form-data">
                 <div class="form-group myid">
                     <label>id</label>
                     <input type="number" id="id" name="id" class="form-control" readonly="readonly">
+                    
                 </div>
                 <div class="form-group">
                     <label for="name">이름</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="이름">        
+                    <input type="text" class="form-control" id="name" name="name" placeholder="이름" >        
+            
                 </div>
 
                 <div class="form-group">
@@ -84,6 +94,8 @@
         function create(){
             $('#show').hide();
             $('#createform').show();
+          
+            
         }
 
         function viewData(){
@@ -103,6 +115,8 @@
                         str += '</td></tr>';
                     });
                     $("#list").html(str);
+                    $('.true').hide();
+                    $('.false').hide();
                 },
                 error : function(){
                     alert("error");
@@ -112,6 +126,7 @@
         viewData();
 
         $(document).on("click",".clickable", function(){
+            $('#show').show();
             var id = $(this).text();
 
             $.ajax({
@@ -139,7 +154,7 @@
             var form = $('#createform')[0];
             var data = new FormData(form);
             $('#show').hide();
-    
+           
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
@@ -152,9 +167,13 @@
                     clearData();
                     $('#save').show();
                     $('#createform').hide();
-                    $('#show').show();
+                    $('.true').show();
+                    $('.false').hide();
                 }
-            });
+            }).fail(function(response){
+                $('.false').show();
+                
+            })
         }
 
 
@@ -172,7 +191,6 @@
             $('#update').show();
             $('.myid').show();
             $('#show').hide();
-
 
 
             $.ajax({
@@ -208,10 +226,15 @@
                     $('#update').hide();
                     $('.myid').hide();
                     $('#createform').hide();
-                    $('#show').show();
+                    $('.true').show();
+                    $('.false').hide();
+             
                    
                 }
-            });
+            }).fail(function(response){
+                $('.false').show();
+                
+            })
 
         }
 
@@ -222,6 +245,7 @@
                 url: '/members/' + id,
                 success: function(response){
                     viewData();
+                    $('.true').show();
                 }
             });
         }
