@@ -52,6 +52,22 @@ Route::get('verifyEmailFirst','CustomAuthController@verifyEmailFirst')->name('ve
 
 Route::get('verify/{email}/{verifyToken}','CustomAuthController@sendEmailDone')->name('sendEmailDone');
 
+Route::get('auth/remind', [
+    'as' => 'remind.create',
+    'uses' => 'PasswordsController@getRemind',
+]);
+Route::post('auth/remind', [
+    'as' => 'remind.store',
+    'uses' => 'PasswordsController@postRemind',
+]);
+Route::get('auth/reset/{token}', [
+    'as' => 'reset.create',
+    'uses' => 'PasswordsController@getReset',
+]);
+Route::post('auth/reset', [
+    'as' => 'reset.store',
+    'uses' => 'PasswordsController@postReset',
+]);
 
 // Route::get('photo', 'ImageController@index');
 // Route::post('save-photo', 'ImageController@save');

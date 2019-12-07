@@ -84,9 +84,7 @@
                 align-items: center;
                 display: flex;
                 justify-content: center;
-
             }
-
             @keyframes slidein {
                 from {
                     margin-left: 100%;
@@ -96,33 +94,7 @@
                     margin-left: 0%;
                     width: 100%;
                 }
-                /* 75% {
-                    font-size: 300%;
-                    margin-left: 25%;
-                    width: 150%;
-                } */
-
             }
-            /* .full-height {
-                height: 100vh;
-            } */
-
-            /* .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            } */
-
-            /* .position-ref {
-                position: relative;
-            } */
-
-            /* .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            } */
-
             .content {
                 position: absolute;
                text-align:center;
@@ -149,7 +121,6 @@
                 font-size: 24px;
                 text-shadow: 0 1px 0 rgba(black, .1);
                 text-indent: .3em;
-                /* font-size: 84px; */
                 animation-duration: 3s;
                 animation-name: slidein;
             }
@@ -163,26 +134,13 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-
+            
             .m-b-md {
                 margin-bottom: 30px;
             }
-            img{
-                border: 1px solid #FF00FF;
-                width: 150px;
-                height: 150px;
-            }
-            /* body{
-                background-image:url(fall.png);
-                background-color:#D9E5FF;
-                background-repeat:no-repeat;
-                background-size:contain;
-                background-position:center center;
-            } */
         </style>
     </head>
     <body>
-            <!-- <div class="flex-right position-ref full-height"> -->
             <div class="menu links">
                     @auth
                         <a href="{{ route('logout') }}">Logout</a>
@@ -192,7 +150,7 @@
                     @endauth
                 </div>
             <div class="content">
-                <div class="links">
+                <div class="links">               
                     <a href="/japan">Semester</a>
                     <a href="/member">Member</a>
                     <a href="{{ route('questions.index') }}">Q & A</a>

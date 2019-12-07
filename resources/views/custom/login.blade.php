@@ -134,7 +134,8 @@
             <input type="submit" class="logbtn" value="로그인">
 
             <div class="bottom-text">
-              계정이 없으신가요? <a href="{{ route('custom.register') }}">회원가입</a>
+              계정이 없으신가요? <a href="{{ route('custom.register') }}">회원가입</a></br></br>
+              비밀번호를 잊어버렸다면? <a href="{{ route('remind.create') }}">비밀번호 찾기</a>
             </div>
 
           </form>

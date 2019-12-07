@@ -14,6 +14,12 @@
     .h1{
         font-size:xx-large;
     }
+    /* .D_text{
+        position:absolute;
+        width:1120px;
+        top:480px;
+        left:210px;
+    } */
 </style>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -38,13 +44,13 @@
             <div class="p_text">
             {{ $question->content }}
             </div>
-            <hr>
         </div>
         
 
 
         {{-- 댓글 div --}}
         <div id="comments">
+            <hr>
             <h5>Comment</h5>
                 
                 @forelse ($comments as $comment)    

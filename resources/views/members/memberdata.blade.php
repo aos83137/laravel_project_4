@@ -1,7 +1,15 @@
 @extends('layouts.app')
 @section('content')
 <style>
-
+ table{
+    border-bottom:1px solid #D8D8D8;
+}
+th {
+    background-color:#BDBDBD
+}
+tr:hover{
+    background-color:#F2F2F2;
+}
 </style>
     <div class="container">
 
@@ -9,12 +17,8 @@
         @if (isset(Auth::user()->name))
             @if (Auth::user()->name == 'admin')
                 @csrf
-
-                    <button type="button" id="create" onclick="create()" class="btn btn-primary" style="width:100px;">조원추가</button>
-
-                   
                         <div class="col-nd-8">
-                            <table class="table table-dark table-hover table-bordered" id="tableid">
+                            <table class="table" id="tableid">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -26,19 +30,26 @@
                                 </thead>
                                 <tbody id="list"></tbody>
                             </table>
+                             <button type="button" id="create" onclick="create()" class="btn btn-outline-primary" style="width:90px; float:right">조원추가</button>
+                             
                         </div>
             @elseif (Auth::user()->name != 'admin')
                 @csrf
                     <div id="guest"></div>
             @endif
         @endif
+        
         <div calss="col-nd-4">
+<<<<<<< HEAD
             <div class="alert alert-danger false" style="display: none">
                 내용을 다 입력해주세요.
             </div>
             <div class="alert alert-primary true" style="display: none">
                 저장되었습니다.
             </div>
+=======
+        <br>
+>>>>>>> 2cc0754d927053bc19a4e1915b21d2726545c7e9
             <form id="createform" enctype="multipart/form-data">
                 <div class="form-group myid">
                     <label>id</label>
@@ -62,8 +73,8 @@
                 </div> 
 
 
-                <button type="button" id="save" onclick="saveData()" class="btn btn-primary" style="width:80px;">저장</button>
-                <button type="button" id="update" onclick="updateData()" class="btn btn-warning" style="width:80px;">수정</button>               
+                <button type="button" id="save" onclick="saveData()" class="btn btn-outline-primary" style="width:80px;">저장</button>
+                <button type="button" id="update" onclick="updateData()" class="btn btn-outline-warning" style="width:80px;">수정</button>               
             </form>
         </div>
         <div id="show"></div> 
