@@ -57,7 +57,8 @@ class CustomAuthController extends Controller
     {
         $user = User::where(['email'=>$email, 'verifyToken' => $verifyToken])->first();
         if($user){    
-            return user::where(['email'=>$email, 'verifyToken' => $verifyToken])->update(['status'=>'1','verifyToken'=>NULL]);   
+            user::where(['email'=>$email, 'verifyToken' => $verifyToken])->update(['status'=>'1','verifyToken'=>NULL]);
+            return redirect('/');   
         }
         else{
             return 'user not found';
