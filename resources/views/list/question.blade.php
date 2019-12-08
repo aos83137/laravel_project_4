@@ -11,10 +11,6 @@
     .link:hover{color: blue; font-weight: bold;}
     .link:active{color: red;}
 
-    * {
-        font-family: '메이플스토리', serif;
-    }
-
 </style>
     <div class="container">
         {{-- flash_message 코드임 --}}
