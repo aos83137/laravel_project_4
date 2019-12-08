@@ -177,7 +177,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -231,7 +230,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
