@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="style.css">
+@extends('layouts.app_login')
+
+@section('content')
     <style>
     *{
       margin: 0;
       padding: 0;
       text-decoration: none;
-      font-family: sans-serif;
+      font-family: '메이플스토리', sans-serif;
       box-sizing: border-box;
     }
 
@@ -106,10 +103,6 @@
     }
 
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
-  </head>
-  <body>
-    <h1> Team 1 </h1>
     @if(session('status'))
         {{session('status')}}
     @endif
@@ -118,9 +111,11 @@
                 <p class="alert alert-danger">{{$error}}</p>
             @endforeach
         @endif
+        
           <form action="{{ route('custom.login') }}" class="login-form" method="post">
             {{csrf_field()}}
-            <h1>Team 1</h1>
+            <h1>TEAM 1</h1>
+            
             <div class="txtb">
               <input type="text" class="form-control" name="email">
               <span data-placeholder="이메일"></span>
@@ -152,6 +147,4 @@
 
           </script>
 
-
-  </body>
-</html>
+@stop

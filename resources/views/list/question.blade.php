@@ -4,11 +4,16 @@
 <style>
     .link {
         text-decoration: none;
+
     }
     .link:link{color: black;  text-decoration: none;}
     .link:visited{color:gray;}
     .link:hover{color: blue; font-weight: bold;}
     .link:active{color: red;}
+
+    * {
+        font-family: '메이플스토리', serif;
+    }
 
 </style>
     <div class="container">

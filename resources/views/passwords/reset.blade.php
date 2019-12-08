@@ -6,6 +6,7 @@ html body{
   min-height: 100vh;
       /* background-image: linear-gradient(120deg,#3498db,#8e44ad); */
       background: linear-gradient(to bottom, #F5A9A9,#D8CEF6);
+      font-family: '메이플스토리', sans-serif;
 }
 .body_t{
   width: 400px;
@@ -37,7 +38,7 @@ html body{
       background-position: right;
     }
 .page-header{
-  font-family:sans-serif;
+  font-family: '메이플스토리', sans-serif;
 }
 </style>
   <form action="{{ route('reset.store') }}" method="POST" role="form" class="form__auth">
@@ -50,7 +51,7 @@ html body{
     </div>
 
     <div class="form-group">
-      <input type="email" name="email" class="form-control" placeholder="{{ trans('E-mail') }}" value="{{ old('email') }}" autofocus>
+      <input type="email" name="email" class="form-control" placeholder="{{ trans('이메일') }}" value="{{ old('email') }}" autofocus>
       {!! $errors->first('email', '<span class="form-error">:message</span>') !!}
     </div>
 

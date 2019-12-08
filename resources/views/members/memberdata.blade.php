@@ -5,10 +5,11 @@
     border-bottom:1px solid #D8D8D8;
 }
 th {
-    background-color:#BDBDBD
+    background-color:#BDBDBD;\
+
 }
 tr:hover{
-    background-color:#F2F2F2;
+    background-color:#F2F2F2;\
 }
 </style>
     <div class="container">

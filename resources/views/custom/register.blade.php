@@ -1,73 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Custom Register</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+@extends('layouts.app_reg')
 
-</head>
+@section('content')
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        font-family: '메이플스토리', sans-serif;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        /* background-image: linear-gradient(120deg,#3498db,#8e44ad); */
+        background: linear-gradient(to bottom, #F5A9A9, #D8CEF6);
+    }
+
+    .login-form {
+        width: 360px;
+        background: #f1f1f1;
+        height: 650px;
+        padding: 80px 40px;
+        border-radius: 10px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .login-form h1 {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .txtb {
+        border-bottom: 2px solid #adadad;
+        position: relative;
+        margin: 30px 0;
+    }
+
+    .txtb input {
+        font-size: 15px;
+        color: #333;
+        border: none;
+        width: 100%;
+        outline: none;
+        background: none;
+        padding: 0 5px;
+        height: 40px;
+    }
+
+    .txtb span::before {
+        content: attr(data-placeholder);
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        color: #adadad;
+        transform: translateY(-50%);
+        z-index: -1;
+        transition: .5s;
+    }
+
+    .txtb span::after {
+        content: '';
+        position: absolute;
+        right: 0px;
+        top: 39.7px;
+        width: 0%;
+        height: 2px;
+        background: linear-gradient(120deg, #3498db, #8e44ad);
+        transition: .5s;
+    }
+
+    .focus+span::before {
+        top: -5px;
+    }
+
+    .focus+span::after {
+        width: 100%;
+    }
+
+    .logbtn {
+        display: block;
+        width: 100%;
+        height: 50px;
+        border: none;
+        background: linear-gradient(120deg, #3498db, #8e44ad, #3498db);
+        background-size: 200%;
+        color: #fff;
+        outline: none;
+        cursor: pointer;
+        transition: .5s;
+    }
+
+    .logbtn:hover {
+        background-position: right;
+    }
+
+    .bottom-text {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 13px;
+    }
+
 </style>
-<body>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-offset-3 col-lg-6">
-
-                @if(count($errors) > 0)
-                    @foreach($errors->all() as $error)
-                        <p class="alert alert-danger">{{$error}}</p>
-                    @endforeach
-                @endif
-
-                <form class="form-horizontal" action="{{route('custom.register')}}" method="post">
-                {{csrf_field()}}
-                    <fieldset>
-                        <legend align="center">회원가입</legend>
-                        <div class="form-group">
-                            <label for="inputEmail" class="col-lg-4 control-label">이름</label>
-                            <div class="col-lg-8">
-                                <input type="text" class="form-control" name="name" value="{{old('name')}}" placeholder="이름">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputEmail" class="col-lg-4 control-label">이메일</label>
-                            <div class="col-lg-8">
-                                <input type="text" class="form-control" name="email" value="{{old('email')}}" placeholder="이메일">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputPassword1" class="col-lg-4 control-label">비밀번호</label>
-                            <div class="col-lg-8">
-                                <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="비밀번호">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputPassword1" class="col-lg-4 control-label">비밀번호 확인</label>
-                            <div class="col-lg-8">
-                                <input type="password" class="form-control" id="exampleInputPassword1" name="password_confirmation" placeholder="비밀번호">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <div class="col-lg-8 col-lg-offset-2">
-                                <button type="submit" class="btn btn-primary btn-block">가입</button>
-                            </div>
-                        </div>  
-                    </fieldset>
-                </form>
-            </div>
-        </div>
+@if(count($errors) > 0)
+@foreach($errors->all() as $error)
+<p class="alert alert-danger">{{$error}}</p>
+@endforeach
+@endif
+<!-- <form action="{{ route('custom.login') }}" class="login-form" method="post"> -->
+<form action="{{ route('custom.register') }}" class="login-form" method="post">
+    {{csrf_field()}}
+    <h1>회원가입</h1>
+    <div class="txtb">
+        <input type="text" class="form-control" name="email">
+        <span data-placeholder="이름"></span>
     </div>
-<script
-  src="http://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
-</html>
+    <div class="txtb">
+        <input type="text" class="form-control" name="email">
+        <span data-placeholder="이메일"></span>
+    </div>
+
+    <div class="txtb">
+        <input type="password" class="form-control" name="password">
+        <span data-placeholder="비밀번호"></span>
+    </div>
+
+    <div class="txtb">
+        <input type="password" class="form-control" name="password">
+        <span data-placeholder="비밀번호"></span>
+    </div>
+
+    <input type="submit" class="logbtn" value="회원가입">
+
+    <div class="bottom-text">
+        계정이 있으신가요? <a href="{{ route('custom.login') }}">로그인</a></br></br>
+        비밀번호를 잊어버렸다면? <a href="{{ route('remind.create') }}">비밀번호 찾기</a>
+    </div>
+
+</form>
+
+<script type="text/javascript">
+    $(".txtb input").on("focus", function () {
+        $(this).addClass("focus");
+    });
+
+    $(".txtb input").on("blur", function () {
+        if ($(this).val() == "")
+            $(this).removeClass("focus");
+    });
+
+</script>
+@stop

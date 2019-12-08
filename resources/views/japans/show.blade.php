@@ -7,7 +7,7 @@
 body, html{
   /* background-color:#A9E2F3; */
   background: linear-gradient(to right, #F5F6CE,#58FAD0);
-  font-family: 'Nunito', sans-serif;
+  font-family: '메이플스토리', sans-serif;
 }
 /* @keyframes slidein {
                 0%, 100%{transform:translate(0,0)}
@@ -38,7 +38,7 @@ body, html{
   text-align:left;
   margin-left:30px;
   margin-top:50px;
-  font-family: 'Nunito', sans-serif;
+  font-family: '메이플스토리', sans-serif;
 }
 h1:after{
   content: "";

@@ -14,7 +14,7 @@
             html, body {
                 background: linear-gradient(to bottom, #F5A9A9,#D8CEF6);
                 color: #8A0829;
-                font-family: 'Nunito', sans-serif;
+                font-family: '메이플스토리', sans-serif;
                 font-weight: 500;
                 height: 100vh;
                 margin: 0;
@@ -116,7 +116,7 @@
                 transform: translate3d(0, 0, 0);
                 color: black;
                 text-transform: uppercase;
-                font-family: 'Playfair Display', serif;
+                font-family: '메이플스토리', serif;
                 letter-spacing: .4em;
                 font-size: 24px;
                 text-shadow: 0 1px 0 rgba(black, .1);
