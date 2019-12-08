@@ -114,11 +114,11 @@
     {{csrf_field()}}
     <h1>회원가입</h1>
     <div class="txtb">
-        <input type="text" class="form-control" name="email">
+        <input type="text" class="form-control" name="name" value="{{old('name')}}">
         <span data-placeholder="이름"></span>
     </div>
     <div class="txtb">
-        <input type="text" class="form-control" name="email">
+        <input type="text" class="form-control" name="email" value="{{old('email')}}">
         <span data-placeholder="이메일"></span>
     </div>
 
@@ -128,7 +128,7 @@
     </div>
 
     <div class="txtb">
-        <input type="password" class="form-control" name="password">
+        <input type="password" class="form-control" name="password_confirmation">
         <span data-placeholder="비밀번호"></span>
     </div>
 
