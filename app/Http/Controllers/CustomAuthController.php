@@ -37,15 +37,6 @@ class CustomAuthController extends Controller
         $this->sendEmail($thisUser);
 
         return redirect(route('custom.login'));
-        // $this->validation($request);
-        // $request['password'] = bcrypt($request->password);
-        // User::create($request->all());
-        
-    }
-
-    public function verifyEmailFirst()
-    {
-        return view('emails/verifyEmailFirst');
     }
 
     public function sendEmail($thisUser)
@@ -57,8 +48,8 @@ class CustomAuthController extends Controller
     {
         $user = User::where(['email'=>$email, 'verifyToken' => $verifyToken])->first();
         if($user){    
-            user::where(['email'=>$email, 'verifyToken' => $verifyToken])->update(['status'=>'1','verifyToken'=>NULL]);
-            return redirect('/');   
+            user::where(['email'=>$email, 'verifyToken' => $verifyToken])->update(['status'=>'1','verifyToken'=>NULL]); 
+            return redirect('/');  
         }
         else{
             return 'user not found';
@@ -77,23 +68,19 @@ class CustomAuthController extends Controller
             'password' => ['required', 'max:255'],
         ]);
 
-        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password]))
+        if(! Auth::attempt(['email'=>$request->email,'password'=>$request->password]))
         {    
-            return redirect('/');
+            return back()->withErrors("이메일 혹은 비밀번호가 맞지 않습니다.");
         }
-        
-        return back()->withErrors("이메일 혹은 비밀번호가 맞지 않습니다.");
+
+        if(! auth()->user()->status)
+        {
+            auth()->logout();
+
+            return back()->withErrors("이메일 가입 확인을 해주세요");
+        }
+        return redirect('/');
     }
-
-
-    // public function validation($request)
-    // {
-    //     return $validatedData = $request->validate([
-    //             'name' => ['required', 'max:255'],
-    //             'email' => ['required', 'email', 'unique:users', 'max:255'],
-    //             'password' => ['required', 'confirmed', 'max:255'],
-    //         ]);
-    // }
 
     public function logout(Request $request)
     {
