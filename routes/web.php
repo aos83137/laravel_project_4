@@ -48,8 +48,6 @@ Route::get('logout', 'CustomAuthController@logout');
 
 Route::post('logout', 'CustomAuthController@logout')->name('logout');
 
-Route::get('verifyEmailFirst','CustomAuthController@verifyEmailFirst')->name('verifyEmailFirst');
-
 Route::get('verify/{email}/{verifyToken}','CustomAuthController@sendEmailDone')->name('sendEmailDone');
 
 Route::get('auth/remind', [
@@ -68,6 +66,3 @@ Route::post('auth/reset', [
     'as' => 'reset.store',
     'uses' => 'PasswordsController@postReset',
 ]);
-
-// Route::get('photo', 'ImageController@index');
-// Route::post('save-photo', 'ImageController@save');
